@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /wp-admin/
+Disallow: /wp-json/
+Disallow: /readme.html
+Disallow: /*?
+Disallow: /?s=
+Disallow: */page/
+Disallow: */feed/
+Allow: /wp-admin/admin-ajax.php
+Allow: /*.css
+Allow: /*.js
+
+# Sitemap: /sitemap_index.xml
