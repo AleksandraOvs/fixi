@@ -29,6 +29,37 @@ $f_max = get_field('wa', 'option');
                     </div>
                 </div>
             </div>
+
+            <?php if (has_nav_menu('footer-menu1')) : ?>
+                <div class="footer__col">
+                    <?php
+                    wp_nav_menu([
+                        'theme_location' => 'footer-menu1',
+                        'container'      => false,
+                        'menu_class'     => 'footer-menu__list',
+                        'fallback_cb'    => false,
+                    ]);
+                    ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (has_nav_menu('footer-menu2')) : ?>
+                <div class="footer__col">
+                    <?php
+                    wp_nav_menu([
+                        'theme_location' => 'footer-menu2',
+                        'container'      => false,
+                        'menu_class'     => 'footer-menu__list',
+                        'fallback_cb'    => false,
+                    ]);
+                    ?>
+                </div>
+            <?php endif; ?>
+
+
+
+
+
             <div class="footer__col">
                 <div class="footer__phone-sub">
                     Единый контактный центр
@@ -99,12 +130,14 @@ $f_max = get_field('wa', 'option');
                 <a href="/publichnaya-oferta/">Публичная оферта</a>
             </div><!--/noindex-->
         </div>
+
+        <!--noindex-->
+        <div class="footer__disclaimer">
+            Сайт не является публичной офертой. Apple, iPhone, iPad, MacBook, iMac, Apple Watch — товарные знаки Apple Inc., введённых в гражданский оборот на территории РФ. Мы не являемся официальными представителями Apple. Ремонт проводится в неавторизованных сервисных центрах. Сайт использует файлы cookie.
+        </div><!--/noindex-->
     </div>
 
-    <!--noindex-->
-    <div class="footer__disclaimer">
-        Сайт не является публичной офертой. Apple, iPhone, iPad, MacBook, iMac, Apple Watch — товарные знаки Apple Inc., введённых в гражданский оборот на территории РФ. Мы не являемся официальными представителями Apple. Ремонт проводится в неавторизованных сервисных центрах. Сайт использует файлы cookie.
-    </div><!--/noindex-->
+
 </footer>
 
 <div id="success-modal" class="blue-modal modal">

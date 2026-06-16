@@ -445,6 +445,10 @@ footer a {
     gap: 20px;
 }
 
+.footer__col .footer-menu__list li:not(:last-child) {
+    margin-bottom: 10px;
+}
+
 .footer__list {
     width: 180px;
 }
@@ -3345,4 +3349,10 @@ textarea:focus {
     font-weight: 600;
     color: var(--siniy);
     line-height: 1.3;
+}
+
+.footer__disclaimer {
+    padding-top: 20px;
+    border-top: 1px solid #747474;
+    margin-top: 30px;
 }

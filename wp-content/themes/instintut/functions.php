@@ -135,7 +135,9 @@ function register_html5_menu()
 {
     register_nav_menus(array(
         'header-menu'  => esc_html('Header Menu', 'html5blank'),
-        'extra-menu'   => esc_html('Extra Menu', 'html5blank')
+        'extra-menu'   => esc_html('Extra Menu', 'html5blank'),
+        'footer-menu1'   => esc_html('Footer Menu#1', 'html5blank'),
+        'footer-menu2'   => esc_html('Footer Menu#2', 'html5blank'),
     ));
 }
 

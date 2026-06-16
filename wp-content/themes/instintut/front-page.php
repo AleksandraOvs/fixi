@@ -23,8 +23,10 @@ get_header();
 
             // === ЛОГИКА ФОРМЫ ДИАГНОСТИКИ ===
 
-            const diagnosticsByDevice = <?php echo json_encode($diagnostics_by_device, JSON_UNESCAPED_UNICODE); ?>;
-
+            const diagnosticsByDevice = <?php echo json_encode($diagnostics_by_device ?? [], JSON_UNESCAPED_UNICODE); ?>;
+            if (!isset($diagnostics_by_device)) {
+                $diagnostics_by_device = [];
+            }
             const ctaDeviceTypeSelect = document.getElementById('cta-device-type');
             const ctaDiagnosticSelect = document.getElementById('cta-device-diagnostic');
             const ctaForm = document.getElementById('cta-diagnostic-form');
