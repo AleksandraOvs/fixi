@@ -332,6 +332,7 @@ header {
 }
 
 .hero__services {
+    padding: 40px;
     margin-top: -44px;
     margin-bottom: 40px;
     border-radius: 30px;
@@ -2929,7 +2930,7 @@ textarea:focus {
     box-shadow: 2px 4px 10px 0 rgba(11, 70, 122, 0.1), 7px 17px 19px 0 rgba(11, 70, 122, 0.09), 16px 39px 25px 0 rgba(11, 70, 122, 0.05), 29px 70px 30px 0 rgba(11, 70, 122, 0.01), 45px 109px 33px 0 rgba(11, 70, 122, 0);
     background: var(--svetlo-goluboy);
 
-    padding: 40px;
+    padding: 20px;
     -webkit-animation: slideIn .3s;
     animation: slideIn .3s;
     border-radius: 30px;
@@ -2987,7 +2988,7 @@ textarea:focus {
 
 .modal-content .form-group__terms label {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .modal .close {
@@ -3309,7 +3310,7 @@ textarea:focus {
     height: auto !important;
     line-height: normal !important;
 }
-}
+
 
 /* === Плитка неисправностей (archive-service) === */
 .prob-tags {
@@ -3355,4 +3356,22 @@ textarea:focus {
     padding-top: 20px;
     border-top: 1px solid #747474;
     margin-top: 30px;
+}
+
+.search-box-diagnostic {
+    position: relative;
+}
+
+.search-box-diagnostic:after {
+    content: '';
+    display: block;
+    width: 340px;
+    height: 340px;
+    background: url(/img/bot.png) no-repeat;
+    background-position: center;
+    background-size: contain;
+    position: absolute;
+    right: 0;
+    top: -100px;
+    animation: bot-wiggle 2s ease-in-out infinite alternate;
 }

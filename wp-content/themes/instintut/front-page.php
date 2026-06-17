@@ -6,7 +6,7 @@ get_header();
 <div class="main">
     <?php get_template_part('parts/front-page/hero') ?>
     <?php get_template_part('parts/front-page/search-box'); ?>
-    <?php get_template_part('parts/front-page/front-features'); ?>
+    <?php get_template_part('parts/features'); ?>
     <div class="front-wrapper">
         <?php get_template_part('parts/front-page/about-us'); ?>
         <?php get_template_part('parts/front-page/reviews'); ?>

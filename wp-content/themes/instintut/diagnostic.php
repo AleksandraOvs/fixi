@@ -1,6 +1,6 @@
-<?php 
+<?php
 /* Template Name: Самодиагностика хабовая */
-get_header(); 
+get_header();
 
 $h1 = get_field('h1') ? get_field('h1') : $post->post_title;
 ?>
@@ -30,7 +30,7 @@ $h1 = get_field('h1') ? get_field('h1') : $post->post_title;
 
         <div class="features-no-padd"><?php get_template_part('parts/features'); ?></div>
 
-        <?php get_template_part('parts/reviews'); ?>
+        <?php get_template_part('parts/front-page/reviews'); ?>
 
         <?php get_template_part('parts/contacts'); ?>
 
