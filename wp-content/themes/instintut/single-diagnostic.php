@@ -3,7 +3,7 @@ get_header();
 
 $h1 = get_field('h1') ? get_field('h1') : $post->post_title;
 
-$banner_img = get_field('image') ? get_field('image')['sizes']['large'] : '/img/bot2.png';
+$banner_img = get_field('image') ? get_field('image')['sizes']['large'] : '/wp-content/uploads/2026/01/3721592-2.png';
 $banner_title = get_field('title') ?: '';
 $banner_sub = get_field('sub') ?: '';
 
