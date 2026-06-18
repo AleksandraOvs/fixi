@@ -1,47 +1,86 @@
 <?php
-$h2_team = get_field('h2_team') ?: 'Наши специалисты —<br> профессионалы с опытом от 5 лет';
+$team = get_posts([
+    'post_type' => 'specs',
+    'posts_per_page' => -1,
+]);
 ?>
 
 <div class="team p-100">
     <div class="container">
         <h2>
-            <?= $h2_team ?>
+            Наши специалисты —
+            <br> профессионалы с опытом от 5 лет
         </h2>
         <div class="team__sub">
-            Каждый мастер проходит обучение для работы с новейшей техникой.
+            Каждый мастер регулярно проходит обучение для работы с новейшей техникой.
         </div>
 
-        <div class="team-list row">
-            <div class="col-3">
-                <div class="team-item">
-                    <div class="team-item__photo">
-                        <img src="/img/team/1.png" alt="">
-                    </div>
-                    <div class="team-item__content">
-                        <div class="team-item__name">
-                            Дмитрий
+        <?php if (count($team)) : ?>
+            <div class="team-list-slider swiper">
+                <div class="swiper-wrapper">
+                    <?php foreach ($team as $post) : setup_postdata($post); ?>
+
+                        <div class="team-item swiper-slide team-list-slider__slide">
+                            <div class="team-item__photo">
+                                <img src="<?= get_field('image')['sizes']['large'] ?>" alt="">
+                            </div>
+                            <div class="team-item__content">
+                                <div class="team-item__name">
+                                    <?= $post->post_title ?>
+                                </div>
+                                <div class="team-item__text">
+                                    <?= get_field('post') ?>
+                                </div>
+                            </div>
                         </div>
-                        <div class="team-item__text">
-                            Эксперт по ноутбукам и MacBook, ремонт материнских плат.
-                        </div>
-                    </div>
+
+                    <?php endforeach;
+                    wp_reset_postdata(); ?>
                 </div>
+
+
+
             </div>
-            <div class="col-3">
-                <div class="team-item">
-                    <div class="team-item__photo">
-                        <img src="/img/team/2.png" alt="">
-                    </div>
-                    <div class="team-item__content">
-                        <div class="team-item__name">
-                            Алексей
-                        </div>
-                        <div class="team-item__text">
-                            Мастер по смартфонам и планшетам, замена экранов, восстановление данных.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php endif ?>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        let teamSlider = null;
+
+        function initTeamSlider() {
+
+            if (window.innerWidth <= 992 && teamSlider === null) {
+
+                teamSlider = new Swiper('.team-list-slider', {
+                    slidesPerView: 1,
+                    spaceBetween: 40,
+                    //centeredSlides: true,
+                    //loop: true,
+
+                    breakpoints: {
+                        640: {
+                            slidesPerView: 1
+                        },
+                        992: {
+                            slidesPerView: 3
+                        }
+                    },
+                });
+
+            } else if (window.innerWidth > 992 && teamSlider !== null) {
+
+                teamSlider.destroy(true, true);
+                teamSlider = null;
+
+            }
+        }
+
+        initTeamSlider();
+        window.addEventListener('resize', initTeamSlider);
+
+
+    });
+</script>

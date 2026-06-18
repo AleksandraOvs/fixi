@@ -156,7 +156,7 @@ $solutions = get_field('solutions') ?: [];
 
         <?php get_template_part('parts/front-page/reviews', null, ['css_class' => 'padd-0']); ?>
 
-        <?php get_template_part('parts/front-page/team-block'); ?>
+        <?php get_template_part('parts/team'); ?>
 
         <div class="p-100">
             <?php get_template_part('parts/steps'); ?>
