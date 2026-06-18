@@ -1091,6 +1091,18 @@
         max-width: auto;
     }
 
+    .steps .container .row .col-8 .row div:nth-child(2n+1) .step-item {
+        background: var(--svetlo-goluboy);
+    }
+
+    .steps .container .row .col-8 .row div:nth-child(3) .step-item {
+        background: #fff;
+    }
+
+    .steps .container .row .col-8 .row div:nth-child(4) .step-item {
+        background: var(--svetlo-goluboy);
+    }
+
 }
 
 @media (max-width: 576px) {
