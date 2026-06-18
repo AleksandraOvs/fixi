@@ -1103,6 +1103,10 @@
         background: var(--svetlo-goluboy);
     }
 
+    .hero__services {
+        padding: 200px 40px 40px;
+    }
+
     .hero__services::after {
         content: '';
         display: block;
