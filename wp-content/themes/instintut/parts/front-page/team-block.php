@@ -58,7 +58,7 @@ $team = get_posts([
                 teamSlider = new Swiper('.team-list-slider', {
                     slidesPerView: 1,
                     spaceBetween: 40,
-                    //centeredSlides: true,
+                    centeredSlides: true,
                     //loop: true,
 
                     breakpoints: {
