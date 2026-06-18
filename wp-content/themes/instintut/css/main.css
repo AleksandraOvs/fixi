@@ -991,6 +991,10 @@ h2.about-item__title {
     gap: 40px;
 }
 
+.team-list-slider.swiper {
+    overflow: visible;
+}
+
 .team-item__content {
     flex: 1;
     background: var(--siniy);
