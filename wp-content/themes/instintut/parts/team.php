@@ -48,11 +48,11 @@ $team = get_posts([
 <script>
     document.addEventListener('DOMContentLoaded', function() {
 
-        let teamSlider = null;
+            let teamSlider = null;
 
-        function initTeamSlider() {
+            function initTeamSlider() {
 
-            if (window.innerWidth <= 992 && teamSlider === null) {
+                //if (window.innerWidth <= 992 && teamSlider === null) {
 
                 teamSlider = new Swiper('.team-list-slider', {
                     slidesPerView: 1,
@@ -70,17 +70,14 @@ $team = get_posts([
                     },
                 });
 
-            } else if (window.innerWidth > 992 && teamSlider !== null) {
+                // } else if (window.innerWidth > 992 && teamSlider !== null) {
 
-                teamSlider.destroy(true, true);
-                teamSlider = null;
+                //     teamSlider.destroy(true, true);
+                //     teamSlider = null;
 
             }
         }
 
-        initTeamSlider();
-        window.addEventListener('resize', initTeamSlider);
-
-
-    });
+        initTeamSlider(); window.addEventListener('resize', initTeamSlider);
+    );
 </script>
