@@ -71,19 +71,21 @@ function html5blank_nav()
     );
 }
 
-// Load HTML5 Blank scripts (header.php)
-function html5blank_header_scripts()
+//
+
+add_action('wp_enqueue_scripts', 'theme_scripts');
+function theme_scripts()
 {
     if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
 
         wp_enqueue_script('conditionizr', get_template_directory_uri() . '/js/lib/conditionizr-4.3.0.min.js', array('jquery'), '4.3.0');
         wp_enqueue_script('conditionizr');
 
-        wp_enqueue_script('fancy', get_template_directory_uri() . '/js/jquery.fancybox.min.js', array('jquery'), '1');
+        wp_enqueue_script('fancy', get_template_directory_uri() . '/js/jquery.fancybox.min.js', array('jquery'), '1', true);
 
-        wp_enqueue_script('swiper', get_template_directory_uri() . '/js/swiper.js', array(), '1');
+        wp_enqueue_script('swiper', get_template_directory_uri() . '/js/swiper.js', array(), '1', true);
 
-        wp_enqueue_script('imask', get_template_directory_uri() . '/js/imask.js', array('jquery'), '1');
+        wp_enqueue_script('imask', get_template_directory_uri() . '/js/imask.js', array('jquery'), '1', true);
 
         wp_enqueue_script('custom_scripts', get_template_directory_uri() . '/js/common.js', array('jquery'), '2.2');
 
@@ -330,7 +332,7 @@ function html5blankcomments($comment, $args, $depth)
     Actions + Filters + ShortCodes
 \*------------------------------------*/
 
-    add_action('wp_enqueue_scripts', 'html5blank_header_scripts');
+    //add_action('wp_enqueue_scripts', 'html5blank_header_scripts');
     add_action('get_header', 'enable_threaded_comments');
     add_action('init', 'register_html5_menu');
     add_action('widgets_init', 'my_remove_recent_comments_style');

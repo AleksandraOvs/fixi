@@ -1076,6 +1076,66 @@
     .prob-tags__grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .team-list-slider.swiper {
+        overflow: visible;
+    }
+
+    .team-list-slider .swiper-wrapper {
+        justify-content: unset;
+        gap: unset;
+    }
+
+    .team-item {
+
+        max-width: auto;
+    }
+
+}
+
+@media (max-width: 576px) {
+    .solution-card {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .sol-item__content {
+        width: 100%;
+    }
+
+    .solution-card {
+        box-shadow: none;
+    }
+
+    .card {
+        background: #fff;
+        box-shadow: none;
+    }
+
+    .solution-card {
+        box-shadow: 2px 4px 10px 0 rgba(11, 70, 122, 0.1), 7px 17px 19px 0 rgba(11, 70, 122, 0.09), 16px 39px 25px 0 rgba(11, 70, 122, 0.05), 29px 70px 30px 0 rgba(11, 70, 122, 0.01), 45px 109px 33px 0 rgba(11, 70, 122, 0);
+        background: #fff;
+    }
+
+    .step-item__text {
+        font-size: 12px;
+    }
+
+    .step-item {
+        padding: 20px 10px;
+    }
+
+    .step-item__title {
+        margin-bottom: 10px;
+    }
+
+    .m-100 {
+        margin-bottom: 40px;
+    }
+
+    .p-100 {
+        padding-bottom: 40px;
+    }
 }
 
 @media (max-width: 480px) {

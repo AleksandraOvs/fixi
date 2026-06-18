@@ -1,6 +1,6 @@
 <div class="steps">
     <div class="container">
-        
+
         <div class="row auto-h">
             <div class="col-4 main-col">
                 <div class="video__blue">
@@ -11,7 +11,7 @@
             <div class="col-8">
                 <div class="row auto-h">
                     <div class="col-4">
-                        <div class="step-item step-item_blue">
+                        <div class="step-item">
                             <div class="step-item__title">
                                 Шаг 1
                             </div>
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <div class="col-4">
-                        <div class="step-item step-item_blue">
+                        <div class="step-item">
                             <div class="step-item__title">
                                 Шаг 3
                             </div>
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="step-item step-item_blue">
+                        <div class="step-item">
                             <div class="step-item__title">
                                 Шаг 5
                             </div>

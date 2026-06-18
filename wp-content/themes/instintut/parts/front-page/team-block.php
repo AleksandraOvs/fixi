@@ -17,11 +17,11 @@ $team = get_posts([
         </div>
 
         <?php if (count($team)) : ?>
-            <div class="team-list row">
+            <div class="team-list-slider swiper">
+                <div class="swiper-wrapper">
+                    <?php foreach ($team as $post) : setup_postdata($post); ?>
 
-                <?php foreach ($team as $post) : setup_postdata($post); ?>
-                    <div class="col-3">
-                        <div class="team-item">
+                        <div class="team-item swiper-slide team-list-slider__slide">
                             <div class="team-item__photo">
                                 <img src="<?= get_field('image')['sizes']['large'] ?>" alt="">
                             </div>
@@ -34,11 +34,54 @@ $team = get_posts([
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach;
-                wp_reset_postdata(); ?>
+
+                    <?php endforeach;
+                    wp_reset_postdata(); ?>
+                </div>
+
+
 
             </div>
         <?php endif ?>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        let teamSlider = null;
+
+        function initTeamSlider() {
+
+            if (window.innerWidth <= 992 && teamSlider === null) {
+
+                teamSlider = new Swiper('.team-list-slider', {
+                    slidesPerView: 1,
+                    spaceBetween: 40,
+                    //centeredSlides: true,
+                    //loop: true,
+
+                    breakpoints: {
+                        640: {
+                            slidesPerView: 1
+                        },
+                        992: {
+                            slidesPerView: 3
+                        }
+                    },
+                });
+
+            } else if (window.innerWidth > 992 && teamSlider !== null) {
+
+                teamSlider.destroy(true, true);
+                teamSlider = null;
+
+            }
+        }
+
+        initTeamSlider();
+        window.addEventListener('resize', initTeamSlider);
+
+
+    });
+</script>
