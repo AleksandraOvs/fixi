@@ -48,36 +48,37 @@ $team = get_posts([
 <script>
     document.addEventListener('DOMContentLoaded', function() {
 
-            let teamSlider = null;
+        const teamSlider = new Swiper('.team-list-slider', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
 
-            function initTeamSlider() {
+            // адаптив
+            breakpoints: {
+                640: {
+                    slidesPerView: 2
+                },
+                992: {
+                    slidesPerView: 3
+                },
+                1200: {
+                    slidesPerView: 4
+                }
+            },
 
-                //if (window.innerWidth <= 992 && teamSlider === null) {
+            // пагинация (точки)
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
 
-                teamSlider = new Swiper('.team-list-slider', {
-                    slidesPerView: 1,
-                    spaceBetween: 40,
-                    //centeredSlides: true,
-                    //loop: true,
+            // стрелки (если добавишь в HTML)
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
 
-                    breakpoints: {
-                        640: {
-                            slidesPerView: 1
-                        },
-                        992: {
-                            slidesPerView: 3
-                        }
-                    },
-                });
 
-                // } else if (window.innerWidth > 992 && teamSlider !== null) {
-
-                //     teamSlider.destroy(true, true);
-                //     teamSlider = null;
-
-            }
-        }
-
-        initTeamSlider(); window.addEventListener('resize', initTeamSlider);
-    );
+    });
 </script>
