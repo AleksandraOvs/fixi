@@ -3386,7 +3386,7 @@ textarea:focus {
     position: relative;
 }
 
-.hero__services:after {
+.search-box-diagnostic .hero__search-box .container .hero__services:after {
     content: '';
     display: block;
     width: 340px;
