@@ -1020,6 +1020,7 @@ h2.about-item__title {
     font-size: 16px;
     line-height: 125%;
     color: var(--belyy);
+    min-height: 45px;
 }
 
 .card {
