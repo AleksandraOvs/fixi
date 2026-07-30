@@ -203,32 +203,34 @@
                                                     <?php endforeach; ?>
                                                 </div>
 
-                                                <?php if ($index === 2): ?>
-                                                    <div class="dropdown-menu__content">
-                                                        <?php foreach ($dropdown_tabs as $ti => $t): ?>
-                                                            <div class="dropdown-content <?php echo $ti === 0 ? 'is-active' : ''; ?>"
-                                                                id="<?php echo esc_attr($t['tab_id']); ?>"
-                                                                data-parent="<?php echo $dropdown_id; ?>">
-                                                                <?php if ($t['tab_id'] === 'laptops'): ?>
-                                                                    <ul class="brands-grid">
-                                                                        <li><a href="/service/remont-noutbukov-hp/">HP</a></li>
-                                                                        <li><a href="/service/remont-noutbukov-lenovo/">Lenovo</a></li>
-                                                                        <li><a href="/service/remont-noutbukov-asus/">ASUS</a></li>
-                                                                        <li><a href="/service/remont-noutbukov-acer/">Acer</a></li>
-                                                                        <li><a href="/service/remont-noutbukov-dell/">Dell</a></li>
-                                                                        <li><a href="/service/remont-noutbukov-msi/">MSI</a></li>
-                                                                        <li><a href="/service/remont-noutbukov-samsung/">Samsung</a></li>
-                                                                        <li><a href="/service/remont-noutbukov-toshiba/">Toshiba</a></li>
-                                                                        <li><a href="/service/remont-noutbukov-huawei/">Huawei</a></li>
-                                                                        <li><a href="/service/remont-noutbukov-sony/">Sony</a></li>
-                                                                        <li><a href="/service/remont-makbuk/">Apple</a></li>
-                                                                        <li><a href="/service/remont-noutbukov-lg/">LG</a></li>
-                                                                    </ul>
-                                                                <?php endif; ?>
-                                                            </div>
-                                                        <?php endforeach; ?>
-                                                    </div>
-                                                <?php endif; ?>
+                                                <?php //if ($index === 2): 
+                                                ?>
+                                                <div class="dropdown-menu__content">
+                                                    <?php foreach ($dropdown_tabs as $ti => $t): ?>
+                                                        <div class="dropdown-content <?php echo $ti === 0 ? 'is-active' : ''; ?>"
+                                                            id="<?php echo esc_attr($t['tab_id']); ?>"
+                                                            data-parent="<?php echo $dropdown_id; ?>">
+                                                            <?php if ($t['tab_id'] === 'laptops'): ?>
+                                                                <ul class="brands-grid">
+                                                                    <li><a href="/service/remont-noutbukov-hp/">HP</a></li>
+                                                                    <li><a href="/service/remont-noutbukov-lenovo/">Lenovo</a></li>
+                                                                    <li><a href="/service/remont-noutbukov-asus/">ASUS</a></li>
+                                                                    <li><a href="/service/remont-noutbukov-acer/">Acer</a></li>
+                                                                    <li><a href="/service/remont-noutbukov-dell/">Dell</a></li>
+                                                                    <li><a href="/service/remont-noutbukov-msi/">MSI</a></li>
+                                                                    <li><a href="/service/remont-noutbukov-samsung/">Samsung</a></li>
+                                                                    <li><a href="/service/remont-noutbukov-toshiba/">Toshiba</a></li>
+                                                                    <li><a href="/service/remont-noutbukov-huawei/">Huawei</a></li>
+                                                                    <li><a href="/service/remont-noutbukov-sony/">Sony</a></li>
+                                                                    <li><a href="/service/remont-makbuk/">Apple</a></li>
+                                                                    <li><a href="/service/remont-noutbukov-lg/">LG</a></li>
+                                                                </ul>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                                <?php //endif; 
+                                                ?>
 
                                             <?php endif; ?>
 
