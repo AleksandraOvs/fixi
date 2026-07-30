@@ -828,7 +828,6 @@ h2.about-item__title {
     padding: 20px;
     box-shadow: 2px 4px 10px 0 rgba(11, 70, 122, 0.1), 7px 17px 19px 0 rgba(11, 70, 122, 0.09), 16px 39px 25px 0 rgba(11, 70, 122, 0.05), 29px 70px 30px 0 rgba(11, 70, 122, 0.01), 45px 109px 33px 0 rgba(11, 70, 122, 0);
     background: var(--belyy);
-    height: 100%;
     overflow: hidden;
 }
 
@@ -1807,7 +1806,7 @@ h1 span {
 .services-hero {
     position: relative;
     display: flex;
-    align-items: center;
+    flex-direction: column;
 }
 
 .services-hero__img {
