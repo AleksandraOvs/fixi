@@ -9,28 +9,38 @@ document.addEventListener('DOMContentLoaded', function () {
     menuParents.forEach(parent => {
         const toggleBtn = parent.querySelector('.js-dropdown-toggle');
 
-        if (!toggleBtn) return; // Защита от ошибок
+        if (!toggleBtn) return;
 
-        // Клик по кнопке открытия меню
         toggleBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
+
+
 
             const isOpen = parent.classList.contains('is-open');
 
-            // Закрываем все другие открытые меню
+            console.log('click', isOpen, this.href);
+            // Если меню уже открыто — разрешаем переход по ссылке
+            if (isOpen) {
+                return;
+            }
+
+            if (isOpen) {
+                console.log('GO');
+                return;
+            }
+
+            console.log('OPEN');
+
+            // Первый клик: только открываем меню
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Закрываем остальные
             menuParents.forEach(item => {
-                if (item !== parent) {
-                    item.classList.remove('is-open');
-                }
+                item.classList.remove('is-open');
             });
 
-            // Переключаем текущее меню
-            if (isOpen) {
-                parent.classList.remove('is-open');
-            } else {
-                parent.classList.add('is-open');
-            }
+            // Открываем текущее
+            parent.classList.add('is-open');
         });
     });
 
@@ -62,33 +72,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
     tabs.forEach(tab => {
         tab.addEventListener('click', function (e) {
+
+            const isActive = this.classList.contains('is-active');
+
+            // Если таб уже активен — разрешаем переход по ссылке
+            if (isActive) {
+                return;
+            }
+
+            // Первый клик — только открываем таб
             e.preventDefault();
             e.stopPropagation();
 
-            // Получаем ID родительского dropdown
             const parentId = this.getAttribute('data-parent');
             const targetTabId = this.getAttribute('data-tab');
 
-            // Находим родительский контейнер dropdown
             const menuContainer = this.closest('.dropdown-menu');
 
             if (!menuContainer) return;
 
-            // Убираем активность у всех табов в ЭТОМ dropdown
+            // Убираем активность у всех табов
             menuContainer.querySelectorAll('.dropdown-tab').forEach(t => {
                 t.classList.remove('is-active');
             });
 
-            // Убираем активность у всего контента в ЭТОМ dropdown
+            // Убираем активность у контента
             menuContainer.querySelectorAll('.dropdown-content').forEach(c => {
                 c.classList.remove('is-active');
             });
 
-            // Активируем нажатый таб
+            // Активируем текущий таб
             this.classList.add('is-active');
 
-            // Активируем соответствующий контент
-            const targetContent = menuContainer.querySelector(`#${targetTabId}[data-parent="${parentId}"]`);
+            // Показываем контент
+            const targetContent = menuContainer.querySelector(
+                `#${targetTabId}[data-parent="${parentId}"]`
+            );
+
             if (targetContent) {
                 targetContent.classList.add('is-active');
             }

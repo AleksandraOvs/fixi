@@ -158,14 +158,27 @@
                 }
 
                 if ($menu_items): ?>
+
                     <ul class="header__nav">
                         <?php foreach ($menu_items as $index => $item): ?>
+
+                            <?php
+                            // echo '<pre>';
+                            // print_r($menu_items);
+                            // echo '</pre>';
+                            // exit;
+                            ?>
                             <?php
                             $has_dropdown = !empty($item['has_dropdown']);
                             $title = !empty($item['title']) ? $item['title'] : '';
                             $subtitle = $item['subtitle'] ?? '';
                             $url = $item['url'] ?? '#';
                             $dropdown_tabs = $item['dropdown_tabs'] ?? [];
+
+
+                            $has_dropdown = !empty($item['has_dropdown']);
+
+
                             // Секция открыта если текущая страница находится внутри неё (по URL или по предку)
                             $section_path = rtrim(parse_url($url, PHP_URL_PATH) ?? '', '/');
                             $is_current_section = !empty($section_path) && $section_path !== '/'
@@ -177,6 +190,10 @@
                             ?>
 
                             <li class="<?php echo $has_dropdown ? 'with-childs js-dropdown-parent' : ''; ?>">
+                                <?php
+                                $has_dropdown = !empty($item['has_dropdown']);
+                                echo "<!-- index={$index}, has_dropdown=" . ($has_dropdown ? 1 : 0) . " -->";
+                                ?>
                                 <?php if ($has_dropdown): ?>
                                     <a href="<?php echo esc_url($url); ?>" class="js-dropdown-toggle">
                                         <?php if (!empty($title)): ?>
@@ -187,6 +204,7 @@
                                     </a>
 
                                     <!-- Начало выпадающего меню -->
+
                                     <div class="dropdown-menu" data-dropdown-id="<?php echo $dropdown_id; ?>">
                                         <div class="dropdown-menu__inner">
 
@@ -194,41 +212,38 @@
                                                 <!-- Верхняя часть: Табы -->
                                                 <div class="dropdown-menu__tabs">
                                                     <?php foreach ($dropdown_tabs as $tab_index => $tab): ?>
-                                                        <button
+                                                        <a
+                                                            href="<?php echo esc_url($tab['tab_url'] ?: '#'); ?>"
                                                             class="dropdown-tab <?php echo $tab_index === 0 ? 'is-active' : ''; ?>"
                                                             data-tab="<?php echo esc_attr($tab['tab_id']); ?>"
-                                                            data-parent="<?php echo $dropdown_id; ?>">
+                                                            data-parent="<?php echo esc_attr($dropdown_id); ?>">
                                                             <?php echo esc_html($tab['tab_name']); ?>
-                                                        </button>
+                                                        </a>
                                                     <?php endforeach; ?>
                                                 </div>
 
-                                                <?php if ($index === 2): ?>
-                                                    <div class="dropdown-menu__content">
-                                                        <?php foreach ($dropdown_tabs as $ti => $t): ?>
-                                                            <div class="dropdown-content <?php echo $ti === 0 ? 'is-active' : ''; ?>"
-                                                                id="<?php echo esc_attr($t['tab_id']); ?>"
-                                                                data-parent="<?php echo $dropdown_id; ?>">
-                                                                <?php if ($t['tab_id'] === 'laptops'): ?>
-                                                                    <ul class="brands-grid">
-                                                                        <li><a href="/service/remont-noutbukov-hp/">HP</a></li>
-                                                                        <li><a href="/service/remont-noutbukov-lenovo/">Lenovo</a></li>
-                                                                        <li><a href="/service/remont-noutbukov-asus/">ASUS</a></li>
-                                                                        <li><a href="/service/remont-noutbukov-acer/">Acer</a></li>
-                                                                        <li><a href="/service/remont-noutbukov-dell/">Dell</a></li>
-                                                                        <li><a href="/service/remont-noutbukov-msi/">MSI</a></li>
-                                                                        <li><a href="/service/remont-noutbukov-samsung/">Samsung</a></li>
-                                                                        <li><a href="/service/remont-noutbukov-toshiba/">Toshiba</a></li>
-                                                                        <li><a href="/service/remont-noutbukov-huawei/">Huawei</a></li>
-                                                                        <li><a href="/service/remont-noutbukov-sony/">Sony</a></li>
-                                                                        <li><a href="/service/remont-makbuk/">Apple</a></li>
-                                                                        <li><a href="/service/remont-noutbukov-lg/">LG</a></li>
-                                                                    </ul>
-                                                                <?php endif; ?>
-                                                            </div>
-                                                        <?php endforeach; ?>
-                                                    </div>
-                                                <?php endif; ?>
+                                                <div class="dropdown-menu__content">
+                                                    <?php foreach ($dropdown_tabs as $ti => $t): ?>
+                                                        <div
+                                                            class="dropdown-content <?php echo $ti === 0 ? 'is-active' : ''; ?>"
+                                                            id="<?php echo esc_attr($t['tab_id']); ?>"
+                                                            data-parent="<?php echo esc_attr($dropdown_id); ?>">
+
+                                                            <?php if (!empty($t['tab_links'])): ?>
+                                                                <ul class="brands-grid">
+                                                                    <?php foreach ($t['tab_links'] as $link): ?>
+                                                                        <li>
+                                                                            <a href="<?php echo esc_url($link['link_url']); ?>">
+                                                                                <?php echo esc_html($link['link_text']); ?>
+                                                                            </a>
+                                                                        </li>
+                                                                    <?php endforeach; ?>
+                                                                </ul>
+                                                            <?php endif; ?>
+
+                                                        </div>
+                                                    <?php endforeach; ?>
+                                                </div>
 
                                             <?php endif; ?>
 

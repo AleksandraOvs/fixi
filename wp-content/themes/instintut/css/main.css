@@ -252,6 +252,10 @@ header {
     padding-right: 22px;
 }
 
+.dropdown-menu .dropdown-menu__inner .dropdown-menu__tabs a.dropdown-tab {
+    padding-right: 0;
+}
+
 .header__nav>li.with-childs>a:before {
     content: '';
     position: absolute;
