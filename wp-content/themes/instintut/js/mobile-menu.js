@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     mainToggles.forEach(toggle => {
         toggle.addEventListener('click', function (e) {
+
             e.preventDefault();
+            e.stopPropagation();
 
             const targetId = this.getAttribute('data-target');
             const dropdown = document.getElementById(targetId);
@@ -42,43 +44,61 @@ document.addEventListener('DOMContentLoaded', function () {
     const tabToggles = document.querySelectorAll('.mobile-nav__tab-title');
 
     tabToggles.forEach(toggle => {
-        toggle.addEventListener('click', function (e) {
-            e.preventDefault();
 
-            const targetId = this.getAttribute('data-target');
+        toggle.addEventListener('click', function (e) {
+
+            const targetId = this.dataset.target;
             const content = document.getElementById(targetId);
 
             if (!content) return;
 
             const isOpen = content.classList.contains('is-open');
 
-            // Находим родительский dropdown
+
+            // Второй клик — переход
+            if (isOpen) {
+                return;
+            }
+
+
+            // Первый клик — открыть
+            e.preventDefault();
+            e.stopPropagation();
+
+
             const parentDropdown = this.closest('.mobile-nav__dropdown');
 
-            // Закрываем другие табы в этом dropdown
+
             if (parentDropdown) {
-                parentDropdown.querySelectorAll('.mobile-nav__tab-content.is-open').forEach(item => {
-                    if (item !== content) {
+
+                parentDropdown.querySelectorAll('.mobile-nav__tab-content.is-open')
+                    .forEach(item => {
                         item.classList.remove('is-open');
-                        const otherToggle = document.querySelector(`[data-target="${item.id}"].mobile-nav__tab-title`);
-                        if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
-                    }
-                });
+                    });
+
+                parentDropdown.querySelectorAll('.mobile-nav__tab-title[aria-expanded="true"]')
+                    .forEach(item => {
+                        item.setAttribute('aria-expanded', 'false');
+                    });
+
             }
 
-            // Переключаем текущий таб
-            if (isOpen) {
-                content.classList.remove('is-open');
-                this.setAttribute('aria-expanded', 'false');
-            } else {
-                content.classList.add('is-open');
-                this.setAttribute('aria-expanded', 'true');
-            }
+
+            // Открываем текущий
+            console.log('BEFORE ADD:', content.className);
+
+            content.classList.add('is-open');
+
+            console.log('AFTER ADD:', content.className);
+
+            this.setAttribute('aria-expanded', 'true');
+
         });
+
     });
 
     // Закрытие всех аккордеонов при клике на ссылку
-    const brandLinks = document.querySelectorAll('.mobile-nav__brands a');
+    const brandLinks = document.querySelectorAll('.mobile-nav__links a');
 
     brandLinks.forEach(link => {
         link.addEventListener('click', function () {
@@ -93,3 +113,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+document.addEventListener('click', function (e) {
+    console.log('CLICK TARGET:', e.target);
+});
+
+setTimeout(() => {
+    const content = document.querySelector('#mobile-item-0-tab-1');
+    console.log('AFTER TIMEOUT:', content?.className);
+}, 500);

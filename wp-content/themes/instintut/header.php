@@ -88,7 +88,7 @@
             <div class="header__top">
                 <div class="header__brand">
                     <a href="/">
-                        <img src="<?= $logo ?>" alt="Логотип Fixibot">
+                        <img src="<?= $logo ?>" alt="Fixibot — ремонт техники в Омске">
                     </a>
                 </div>
                 <ul class="header-top-nav">
@@ -386,35 +386,41 @@
 
                                         <div class="mobile-nav__tab">
                                             <!-- Заголовок таба -->
-                                            <button
+                                            <a
+                                                href="<?php echo esc_url($tab['tab_url'] ?? '#'); ?>"
                                                 class="mobile-nav__tab-title"
                                                 data-target="<?php echo $tab_id; ?>">
+
                                                 <span><?php echo esc_html($tab['tab_name']); ?></span>
+
                                                 <span class="mobile-nav__badge">
                                                     <?php echo isset($tab['tab_links']) && is_array($tab['tab_links']) ? count($tab['tab_links']) : 0; ?>
                                                 </span>
+
                                                 <svg class="mobile-nav__icon" width="16" height="16" viewBox="0 0 20 20">
                                                     <polyline points="6 8 10 12 14 8" fill="none" stroke="currentColor" stroke-width="2" />
                                                 </svg>
-                                            </button>
 
-                                            <?php if ($index === 2 && !empty($tab['tab_id']) && $tab['tab_id'] === 'laptops'): ?>
+                                            </a>
+
+                                            <?php if (!empty($tab['tab_links'])): ?>
+
                                                 <div class="mobile-nav__tab-content" id="<?php echo $tab_id; ?>">
-                                                    <ul class="mobile-nav__brands">
-                                                        <li><a href="/service/remont-noutbukov-hp/">HP</a></li>
-                                                        <li><a href="/service/remont-noutbukov-lenovo/">Lenovo</a></li>
-                                                        <li><a href="/service/remont-noutbukov-asus/">ASUS</a></li>
-                                                        <li><a href="/service/remont-noutbukov-acer/">Acer</a></li>
-                                                        <li><a href="/service/remont-noutbukov-dell/">Dell</a></li>
-                                                        <li><a href="/service/remont-noutbukov-msi/">MSI</a></li>
-                                                        <li><a href="/service/remont-noutbukov-samsung/">Samsung</a></li>
-                                                        <li><a href="/service/remont-noutbukov-toshiba/">Toshiba</a></li>
-                                                        <li><a href="/service/remont-noutbukov-huawei/">Huawei</a></li>
-                                                        <li><a href="/service/remont-noutbukov-sony/">Sony</a></li>
-                                                        <li><a href="/service/remont-makbuk/">Apple</a></li>
-                                                        <li><a href="/service/remont-noutbukov-lg/">LG</a></li>
+                                                    <ul class="mobile-nav__links">
+
+                                                        <?php foreach ($tab['tab_links'] as $link): ?>
+
+                                                            <li>
+                                                                <a href="<?php echo esc_url($link['link_url']); ?>">
+                                                                    <?php echo esc_html($link['link_text']); ?>
+                                                                </a>
+                                                            </li>
+
+                                                        <?php endforeach; ?>
+
                                                     </ul>
                                                 </div>
+
                                             <?php endif; ?>
 
                                         </div>
