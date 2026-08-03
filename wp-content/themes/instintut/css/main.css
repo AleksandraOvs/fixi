@@ -1756,6 +1756,10 @@ h2.about-item__title {
     overflow: hidden;
 }
 
+.main .about {
+    padding-top: 70px;
+}
+
 .about {
     position: relative;
     padding-top: 70px;
@@ -3439,4 +3443,8 @@ textarea:focus {
     right: 0;
     top: -100px;
     animation: bot-wiggle 2s ease-in-out infinite alternate;
+}
+
+.main .hero__search-box {
+    padding-bottom: 70px;
 }

@@ -98,7 +98,7 @@ get_header();
     <?php get_template_part('parts/callback'); ?>
     <?php get_template_part('parts/front-page/video-block'); ?>
     <?php get_template_part('parts/cta2'); ?>
-    <?php get_template_part('parts/front-page/map-block'); ?>
+    <?php get_template_part('parts/contacts'); ?>
 
 </div>
 
