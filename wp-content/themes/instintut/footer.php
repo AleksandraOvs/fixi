@@ -157,6 +157,19 @@ $f_max = get_field('wa', 'option');
     </div>
 </div>
 
+<!-- текущий шаблон -->
+<div class="current-temp"
+    style="position: fixed;
+  background: rgba(255,255,255,.7);
+  color: #404040;
+  padding: 5px 10px;
+  font-size: 14px;
+  bottom: 10px;
+  right: 10px;
+  z-index: 999;">
+    <?php echo get_current_template() ?>
+</div>
+
 <?php wp_footer(); ?>
 
 <?php get_template_part('parts/modals') ?>

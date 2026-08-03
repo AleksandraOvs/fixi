@@ -13,8 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         toggleBtn.addEventListener('click', function (e) {
 
-
-
             const isOpen = parent.classList.contains('is-open');
 
             console.log('click', isOpen, this.href);

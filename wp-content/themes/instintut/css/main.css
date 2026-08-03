@@ -138,6 +138,34 @@ body.admin-bar .bg-wrapper {
     margin-top: -51px;
 }
 
+/* Все элементы со скроллом */
+* {
+    scrollbar-width: thin;
+    /* Firefox */
+    scrollbar-color: var(--siniy) #f1f1f1;
+}
+
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    /* горизонтальный скролл */
+}
+
+*::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--siniy);
+    border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: var(--siniy);
+}
+
 header {
     position: absolute;
     top: 0;
@@ -830,7 +858,8 @@ h2.about-item__title {
 .review-item {
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 2px 4px 10px 0 rgba(11, 70, 122, 0.1), 7px 17px 19px 0 rgba(11, 70, 122, 0.09), 16px 39px 25px 0 rgba(11, 70, 122, 0.05), 29px 70px 30px 0 rgba(11, 70, 122, 0.01), 45px 109px 33px 0 rgba(11, 70, 122, 0);
+    /* box-shadow: 2px 4px 10px 0 rgba(11, 70, 122, 0.1), 7px 17px 19px 0 rgba(11, 70, 122, 0.09), 16px 39px 25px 0 rgba(11, 70, 122, 0.05), 29px 70px 30px 0 rgba(11, 70, 122, 0.01), 45px 109px 33px 0 rgba(11, 70, 122, 0); */
+    box-shadow: 0px 3px 2px 2px rgba(11, 70, 122, 0.1);
     background: var(--belyy);
     overflow: hidden;
 }
@@ -883,7 +912,7 @@ h2.about-item__title {
 }
 
 .reviews {
-    padding: 140px 0;
+    padding: 140px 0 140px 0;
 }
 
 .reviews__in {
@@ -1003,7 +1032,7 @@ h2.about-item__title {
     background: var(--siniy);
     border-radius: 10px;
     padding: 20px;
-    height: 100%;
+    min-height: 157px;
 }
 
 .team-list.row {
@@ -1270,11 +1299,12 @@ h2.about-item__title {
     border-radius: 30px;
     padding: 49px 39px;
     box-shadow: 2px 4px 10px 0 rgba(11, 70, 122, 0.1), 7px 17px 19px 0 rgba(11, 70, 122, 0.09), 16px 39px 25px 0 rgba(11, 70, 122, 0.05), 29px 70px 30px 0 rgba(11, 70, 122, 0.01), 45px 109px 33px 0 rgba(11, 70, 122, 0);
-    background: var(--svetlo-goluboy);
+    background: var(--siniy);
 }
 
 .cta2__in h2 {
     font-size: 32px;
+    color: #fff;
 }
 
 .cta2__in .search-form__input {
@@ -1728,6 +1758,7 @@ h2.about-item__title {
 
 .about {
     position: relative;
+    padding-top: 70px;
 }
 
 .about__decor {
@@ -1811,7 +1842,7 @@ h1 span {
 .services-hero {
     position: relative;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
 }
 
 .services-hero__img {
@@ -2402,12 +2433,18 @@ h1 span {
 }
 
 .services-hero__cta {
-    padding: 40px 0 60px;
+    padding: 0 0 60px 0;
 }
 
 .bg-wrapper {
     background: var(--svetlo-goluboy);
     margin-top: -19px;
+}
+
+.block-background {
+    border-radius: 30px;
+    padding: 40px 20px;
+    background: var(--svetlo-goluboy);
 }
 
 .services-hero__img-dec img {

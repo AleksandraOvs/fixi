@@ -697,6 +697,8 @@
         position: relative;
         top: 0;
         right: inherit;
+        display: flex;
+        justify-content: center;
     }
 
     h1 {

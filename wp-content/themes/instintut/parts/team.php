@@ -5,7 +5,7 @@ $team = get_posts([
 ]);
 ?>
 
-<div class="team p-100">
+<div class="team">
     <div class="container">
         <h2>
             Наши специалисты —

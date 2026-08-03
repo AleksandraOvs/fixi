@@ -1,49 +1,4 @@
 <?php
-$problems_list = get_field('problems_list') ?: [];
-$h2_symptom = get_field('h2_symptom') ?: '';
-if (!empty($problems_list)) :
-$_tags_count = count(array_filter($problems_list, function($i){ return !empty($i['title']); }));
-$_show_limit = 16;
-$_idx = 0;
-?>
-<div class="hero-tags m-40">
-    <div class="container">
-        <div class="card">
-            <?php if ($h2_symptom) : ?>
-            <h2><?= $h2_symptom ?></h2>
-            <?php else : ?>
-            <h2>Неисправности <span class="accent"><?= get_the_title() ?></span></h2>
-            <?php endif; ?>
-            <div class="tags-list-in">
-                <ul class="tags-list">
-                    <?php foreach ($problems_list as $item) : if (empty($item['title'])) continue; $_idx++; ?>
-                    <li<?= $_idx > $_show_limit ? ' class="tag-extra" style="display:none"' : '' ?>><a href="#faq" class="tag-link"><?= esc_html($item['title']) ?></a></li>
-                    <?php endforeach; ?>
-                </ul>
-                <?php if ($_tags_count > $_show_limit) : ?>
-                <a href="#" class="tag-link show-all tags-show-more" data-action="show-problems">
-                    Показать все неисправности ↓
-                </a>
-                <script>
-                (function(){
-                    var btn=document.currentScript.previousElementSibling;
-                    btn.addEventListener('click',function(e){
-                        e.preventDefault();
-                        var extras=btn.closest('.tags-list-in').querySelectorAll('.tag-extra');
-                        var isHidden=extras.length && extras[0].style.display==='none';
-                        extras.forEach(function(el){ el.style.display=isHidden ? '' : 'none'; });
-                        btn.textContent=isHidden ? 'Свернуть ↑' : 'Показать все неисправности ↓';
-                    });
-                })();
-                </script>
-                <?php endif; ?>
-            </div>
-        </div>
-    </div>
-</div>
-<?php endif; ?>
-
-<?php
 $prices = get_field('prices') ?: [];
 ?>
 
@@ -77,8 +32,8 @@ $prices = get_field('prices') ?: [];
                                 <button class="show-more-btn">
                                     Смотреть все модели
                                     <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M17.7539 8.03981L17.7539 4L15.3253 4L10.8765 8.04727L10.8765 14.0565L17.7539 8.03981Z" fill="#008EE9" />
-                                      <path d="M4 8.03981L4 4L6.42865 4L10.8774 8.04727L10.8774 14.0565L4 8.03981Z" fill="#008EE9" />
+                                        <path d="M17.7539 8.03981L17.7539 4L15.3253 4L10.8765 8.04727L10.8765 14.0565L17.7539 8.03981Z" fill="#008EE9" />
+                                        <path d="M4 8.03981L4 4L6.42865 4L10.8774 8.04727L10.8774 14.0565L4 8.03981Z" fill="#008EE9" />
                                     </svg>
                                 </button>
                             <?php endif ?>
