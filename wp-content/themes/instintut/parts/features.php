@@ -20,13 +20,13 @@ if ($features && is_array($features)) :
 
     <div class="features p-100">
         <?php
-        if (is_page('front-page')) {
+        if (is_front_page()) {
             echo '<div class="features__circle"></div>';
         }
         ?>
 
         <div class="features__list">
-            <div class="<?= !is_page('front-page') ? 'container block-background' : 'container'; ?>" ?>
+            <div class="<?= !is_front_page() ? 'container block-background' : 'container'; ?>">
                 <h2 class="h2_center">
                     Почему
                     <br>жители Омска доверяют Fixibot?
