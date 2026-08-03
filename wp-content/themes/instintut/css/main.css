@@ -2307,6 +2307,10 @@ h1 span {
     margin-bottom: 40px;
 }
 
+.m-60 {
+    margin-bottom: 60px;
+}
+
 .pricing-col {
     display: flex;
     align-items: center;

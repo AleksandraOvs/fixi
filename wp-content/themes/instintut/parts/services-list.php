@@ -121,7 +121,7 @@ if (count($brands_data) <= 1) {
 
 <?php if (!empty($related_models)): ?>
 
-    <div class="card m-40 card_no-padd">
+    <div class="card m-80 card_no-padd">
         <div class="hero-tags m-80" style="<?= $main_hidden ? 'display: none;' : '' ?>">
             <h2>
                 Выберите марку устройства<br> <span class="accent">для ремонта</span>
