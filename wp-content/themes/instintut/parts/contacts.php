@@ -1,4 +1,4 @@
-<div class="map p-100" id="contacts">
+<div class="map m-80" id="contacts">
     <div class="container">
         <h2>
             Профессиональный сервисный центр

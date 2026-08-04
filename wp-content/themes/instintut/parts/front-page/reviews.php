@@ -7,7 +7,7 @@ $reviews = get_posts([
 ]);
 ?>
 
-<div class="reviews <?= $css_class ?>" id="reviews">
+<div class="reviews m-80 <?= $css_class ?>" id="reviews">
     <div class="container">
 
         <div class="reviews__in">

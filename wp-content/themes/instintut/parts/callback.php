@@ -1,4 +1,4 @@
-<div class="callback m-100">
+<div class="callback m-80">
     <div class="container">
         <div class="callback__in card">
             <div class="callback__header">

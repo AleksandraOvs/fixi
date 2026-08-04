@@ -66,6 +66,7 @@ if ($is_archive) {
 
 
     <?php if ($is_archive) {
+
         if (!empty($_cta_models)) : ?>
 
             <div class="services-hero__cta">
@@ -171,7 +172,8 @@ if ($is_archive) {
         <?php endif;
         ?>
         <div class="container">
-            <?php get_template_part('parts/services-list'); ?>
+            <?php get_template_part('parts/services-list');
+            ?>
         </div>
 
         <?php get_template_part('parts/callback'); ?>

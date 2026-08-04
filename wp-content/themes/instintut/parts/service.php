@@ -1,5 +1,8 @@
 <?php
 $prices = get_field('prices') ?: [];
+$phone2 = get_field('phone_2', 'option') ?: [];
+$tg = get_field('tg', 'option') ?: [];
+$max = get_field('wa', 'option') ?: [];
 ?>
 
 <?php if (count($prices)) : ?>
@@ -40,7 +43,34 @@ $prices = get_field('prices') ?: [];
 
                             <!-- Contact Info -->
                             <div class="contact-info">
-                                * Уточняйте стоимость по телефону 47-81-80 или в WhatsApp/Telegram +7 (908) 119-13-74.
+                                * Уточняйте стоимость по телефону
+
+                                <?php if ($phone2) : ?>
+                                    <?php $phone_link = preg_replace('/[^\d+]/', '', $phone2); ?>
+                                    <a href="tel:<?= esc_attr($phone_link); ?>">
+                                        <?= esc_html($phone2); ?>
+                                    </a>
+                                <?php else : ?>
+                                    <a href="tel:+73812478180">47-81-80</a>
+                                <?php endif; ?>
+
+                                или в
+
+                                <?php if ($max) : ?>
+                                    <a href="<?= esc_url($max); ?>" target="_blank" rel="noopener noreferrer">MAX</a>
+                                <?php else : ?>
+                                    MAX
+                                <?php endif; ?>
+
+                                /
+
+                                <?php if ($tg) : ?>
+                                    <a href="<?= esc_url($tg); ?>" target="_blank" rel="noopener noreferrer">Telegram</a>
+                                <?php else : ?>
+                                    Telegram
+                                <?php endif; ?>
+
+                                +7 (908) 119-13-74.
                             </div>
                         </div>
                     </div>
