@@ -912,7 +912,7 @@ h2.about-item__title {
 }
 
 .reviews {
-    padding: 140px 0 140px 0;
+    padding: 140px 0 0;
 }
 
 .reviews__in {
@@ -1127,6 +1127,10 @@ h2.about-item__title {
 
 .callback__header h2 {
     margin-bottom: 25px;
+}
+
+.steps {
+    margin-top: 80px;
 }
 
 .video__blue {
@@ -1815,7 +1819,6 @@ h1 {
     line-height: 120%;
     text-transform: uppercase;
     color: var(--siniy);
-    margin: 0 0 40px;
 }
 
 h1 span {
@@ -1854,6 +1857,11 @@ h1 span {
     /* position: absolute;
     top: -80px;
     right: 0; */
+}
+
+.services-hero__content__desc {
+    margin-bottom: 40px;
+    font-size: 32px;
 }
 
 .services-hero__content {
@@ -2441,7 +2449,7 @@ h1 span {
 }
 
 .services-hero__cta {
-    padding: 0 0 60px 0;
+    padding: 0 0 80px 0;
 }
 
 .bg-wrapper {

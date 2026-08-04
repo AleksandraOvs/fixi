@@ -9,9 +9,16 @@
  <div class="services-hero">
 
      <div class="services-hero__content">
-         <h1>
-             <?= $h1 ?>
-         </h1>
+
+
+         <?php
+            if (!empty($banner_sub)) {
+                echo '<h1>' . $h1 . '</h1>';
+                echo '<div class="services-hero__content__desc">' . $banner_sub . '</div>';
+            } else {
+                echo '<h1 class="m-40">' . $h1 . '</h1>';
+            }
+            ?>
 
          <div class="hero-discount">
              <div class="hero-discount__top">

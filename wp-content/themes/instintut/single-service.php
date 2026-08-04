@@ -45,7 +45,10 @@ if ($is_archive) {
     $_first = array_key_first($_cta_diag);
 
     //print_r($_cta_devices);
+} else {
+    // get_template_part('parts/service');
 }
+
 ?>
 
 <div class="bg-wrapper p-bottom-0">
@@ -61,7 +64,8 @@ if ($is_archive) {
         </div>
     </div>
 
-    <?php if ($is_archive) :
+
+    <?php if ($is_archive) {
         if (!empty($_cta_models)) : ?>
 
             <div class="services-hero__cta">
@@ -181,17 +185,22 @@ if ($is_archive) {
             <?php get_template_part('parts/team'); ?>
 
             <!--noindex--><?php get_template_part('parts/front-page/reviews'); ?><!--/noindex-->
-
         </div>
 
         <?php get_template_part('parts/problems'); ?>
         <?php get_template_part('parts/cta2'); ?>
         <?php get_template_part('parts/contacts'); ?>
 
-    <?php
-    endif;
 
+    <?php
+    } else {
+        get_template_part('parts/service');
+    }
     ?>
+
+
+
+
 </div>
 
 <?php get_footer() ?>
