@@ -46,6 +46,10 @@ html {
     -ms-text-size-adjust: 100%;
 }
 
+section {
+    padding-bottom: 80px;
+}
+
 /* bc */
 .breadcrumb {
     position: relative;
@@ -134,9 +138,9 @@ html.admin-bar .main {
     margin-top: -51px;
 }
 
-body.admin-bar .bg-wrapper {
+/* body.admin-bar .bg-wrapper {
     margin-top: -51px;
-}
+} */
 
 /* Все элементы со скроллом */
 * {
@@ -315,6 +319,7 @@ header {
 
 .hero {
     overflow: hidden;
+    padding-bottom: 0;
 }
 
 .hero__title {
@@ -364,9 +369,8 @@ header {
 }
 
 .hero__services {
-    padding: 40px;
     margin-top: -44px;
-    margin-bottom: 40px;
+    padding: 40px;
     border-radius: 30px;
     padding: 100px 40px 40px;
     box-shadow: 2px 4px 10px 0 rgba(11, 70, 122, 0.1), 7px 17px 19px 0 rgba(11, 70, 122, 0.09), 16px 39px 25px 0 rgba(11, 70, 122, 0.05), 29px 70px 30px 0 rgba(11, 70, 122, 0.01), 45px 109px 33px 0 rgba(11, 70, 122, 0);
@@ -571,6 +575,10 @@ footer a {
     margin: 0 8px;
 }
 
+.features.p-100 {
+    padding-top: 140px;
+}
+
 .features {
     position: relative;
     overflow: hidden;
@@ -592,12 +600,11 @@ footer a {
 
 .team {
     position: relative;
-    padding: 80px 0;
 }
 
 .team:before {
     width: 100%;
-    height: 100%;
+    height: 400px;
     background: #fff;
     content: '';
     position: absolute;
@@ -624,6 +631,7 @@ footer a {
     height: 2050px;
     border-radius: 50%;
     box-shadow: 0 32px 71px 0 rgba(11, 70, 122, 0.1), 0 129px 129px 0 rgba(11, 70, 122, 0.09), 0 290px 174px 0 rgba(11, 70, 122, 0.05), 0 515px 206px 0 rgba(11, 70, 122, 0.01), 0 804px 225px 0 rgba(11, 70, 122, 0);
+    z-index: 1;
 }
 
 .m-100 {
@@ -640,6 +648,7 @@ footer a {
     padding: 40px;
     box-shadow: 2px 4px 10px 0 rgba(11, 70, 122, 0.1), 7px 17px 19px 0 rgba(11, 70, 122, 0.09), 16px 39px 25px 0 rgba(11, 70, 122, 0.05), 29px 70px 30px 0 rgba(11, 70, 122, 0.01), 45px 109px 33px 0 rgba(11, 70, 122, 0);
     background: var(--belyy);
+    margin-top: 40px;
 }
 
 .tags-list {
@@ -911,10 +920,6 @@ h2.about-item__title {
     gap: 20px;
 }
 
-.reviews {
-    padding: 120px 0 60px;
-}
-
 .reviews__in {
     position: relative;
     min-height: 400px;
@@ -962,6 +967,8 @@ h2.about-item__title {
 .reviews {
     position: relative;
     z-index: 2;
+    padding-top: 80px;
+    padding-bottom: 120px;
 }
 
 .faq {
@@ -1061,10 +1068,14 @@ h2.about-item__title {
     background: var(--belyy);
     border-radius: 30px;
     padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
 }
 
 .callback__in {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     gap: 40px;
 }
@@ -1129,9 +1140,9 @@ h2.about-item__title {
     margin-bottom: 25px;
 }
 
-.steps {
+/* .steps {
     margin-top: 80px;
-}
+} */
 
 .video__blue {
     font-size: 36px;
@@ -1258,6 +1269,7 @@ h2.about-item__title {
     position: relative;
     overflow: hidden;
     padding-bottom: 700px;
+    z-index: 2;
 }
 
 .cta .container {
@@ -1852,13 +1864,6 @@ h1 span {
     justify-content: space-between;
 }
 
-.services-hero__img {
-    position: relative;
-    /* position: absolute;
-    top: -80px;
-    right: 0; */
-}
-
 .services-hero__content__desc {
     margin-bottom: 40px;
     font-size: 32px;
@@ -1876,11 +1881,25 @@ h1 span {
     pointer-events: none;
 }
 
-.services-hero__img img {
+
+
+.services-hero__img img.services__img {
     position: relative;
     z-index: 2;
     width: 400px;
     animation: bot-wiggle 2s ease-in-out infinite alternate;
+}
+
+.img-shadow {
+    position: absolute;
+    top: calc(50% - 150px);
+    width: 300px;
+    height: 300px;
+    left: unset;
+    right: 10%;
+    background: var(--siniy);
+    border-radius: 100%;
+    filter: blur(400px);
 }
 
 .text-block p {
@@ -2376,7 +2395,7 @@ h1 span {
 }
 
 .white-wrapper {
-    padding: 100px 0;
+    /* padding: 100px 0; */
     box-shadow: 2px 4px 10px 0 rgba(11, 70, 122, 0.1), 7px 17px 19px 0 rgba(11, 70, 122, 0.09), 16px 39px 25px 0 rgba(11, 70, 122, 0.05), 29px 70px 30px 0 rgba(11, 70, 122, 0.01), 45px 109px 33px 0 rgba(11, 70, 122, 0);
     background: var(--belyy);
 }
@@ -2445,12 +2464,12 @@ h1 span {
 }
 
 .services-hero__in {
-    padding-top: 170px;
+    padding-top: 140px;
 }
 
-.services-hero__cta {
+/* .services-hero__cta {
     padding: 0 0 80px 0;
-}
+} */
 
 .bg-wrapper {
     background: var(--svetlo-goluboy);
@@ -3443,20 +3462,27 @@ textarea:focus {
     position: relative;
 }
 
-.search-box-diagnostic .hero__search-box .container .hero__services:after {
+.wp-singular.diagnostic-template-default {
+    background: var(--svetlo-goluboy);
+}
+
+._search-diag {
+    position: relative;
+}
+
+._search-diag:after {
     content: '';
     display: block;
     width: 340px;
     height: 340px;
     background: url(/img/bot.png) no-repeat;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-size: auto;
     background-position: center;
     background-size: contain;
     position: absolute;
-    right: 0;
-    top: -100px;
+    right: 100px;
+    top: -50px;
     animation: bot-wiggle 2s ease-in-out infinite alternate;
-}
-
-.main .hero__search-box {
-    padding-bottom: 70px;
 }

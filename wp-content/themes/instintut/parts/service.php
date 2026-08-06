@@ -108,9 +108,9 @@ $max = get_field('wa', 'option') ?: [];
 
 <?php get_template_part('parts/prob-service'); ?>
 
-<div class="white-wrapper m-100">
+<div class="white-wrapper">
     <?php get_template_part('parts/faq'); ?>
-    <?php get_template_part('parts/team'); ?>
+    <?php get_template_part('parts/team-block'); ?>
 
     <?php get_template_part('parts/steps'); ?>
 </div>

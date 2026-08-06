@@ -2,7 +2,7 @@
 $video_link = wp_is_mobile() ? get_field('video_link_mobile') : get_field('video_link');
 ?>
 
-<div class="video m-100">
+<section class="video">
     <div class="container">
         <div class="row auto-h">
             <div class="col-4">
@@ -36,7 +36,7 @@ $video_link = wp_is_mobile() ? get_field('video_link_mobile') : get_field('video
             </div>
         </div>
     </div>
-</div>
+</section>
 
 <style>
     @media (max-width: 991px) {

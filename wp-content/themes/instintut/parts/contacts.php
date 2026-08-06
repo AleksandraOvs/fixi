@@ -1,4 +1,4 @@
-<div class="map m-80" id="contacts">
+<section class="map" id="contacts">
     <div class="container">
         <h2>
             Профессиональный сервисный центр
@@ -72,4 +72,4 @@
             </div>
         </div>
     </div>
-</div>
+</section>

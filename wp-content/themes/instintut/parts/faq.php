@@ -4,7 +4,7 @@ $faq = get_field('faq') ?: get_field('faq', 16);
 $faq_title = get_field('h2_faq') ?: 'Ответы на частые вопросы о ремонте в Fixibot <br> <span>Вопрос/ответ</span>';
 ?>
 
-<div class="faq m-80">
+<section class="faq">
     <div class="container">
         <h2>
             <?= $faq_title ?>
@@ -85,4 +85,4 @@ $faq_title = get_field('h2_faq') ?: 'Ответы на частые вопрос
             </div>
         </div>
     </div>
-</div>
+</section>

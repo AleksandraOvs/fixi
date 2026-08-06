@@ -20,13 +20,13 @@ $h1 = get_field('h1') ? get_field('h1') : $post->post_title;
         </div>
     </div>
 
-    <div class="search-box-diagnostic">
-        <?php get_template_part('parts/search-diag'); ?>
-    </div>
+
+    <?php get_template_part('parts/search-diag'); ?>
+
 
     <?php get_template_part('parts/callback'); ?>
 
-    <div class="white-wrapper m-100">
+    <div class="white-wrapper">
 
         <div class="features-no-padd"><?php get_template_part('parts/features'); ?></div>
 

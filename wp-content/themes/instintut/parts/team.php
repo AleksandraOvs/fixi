@@ -6,6 +6,13 @@ $team = get_posts([
 ?>
 
 <div class="team">
+    <?php if (is_front_page()) {
+        echo 'front page';
+        echo ' <div class="features__circle_2"></div>';
+    }
+    ?>
+
+
     <div class="container">
         <h2>
             Наши специалисты —

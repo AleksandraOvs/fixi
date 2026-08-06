@@ -1,7 +1,7 @@
 <?php
 $faq = get_field('faq') ?: [];
 ?>
-<div class="faq p-100">
+<section class="faq">
     <div class="container">
         <h2>
             Ответы на частые вопросы о ремонте в Fixibot
@@ -84,4 +84,4 @@ $faq = get_field('faq') ?: [];
             </div>
         </div>
     </div>
-</div>
+</section>

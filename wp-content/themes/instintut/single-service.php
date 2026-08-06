@@ -51,158 +51,140 @@ if ($is_archive) {
 
 ?>
 
-<div class="bg-wrapper p-bottom-0">
-
-    <div class="services-hero__in">
-        <div class="container">
-
-            <?php breadcrumbs($post->post_title, $breadcrumb_items); ?>
-
-            <?php get_template_part('parts/service/service-hero') ?>
 
 
-        </div>
+<div class="services-hero__in">
+    <div class="container">
+
+        <?php breadcrumbs($post->post_title, $breadcrumb_items); ?>
+
+        <?php get_template_part('parts/service-hero') ?>
+
+
     </div>
+</div>
 
 
-    <?php if ($is_archive) {
+<?php if ($is_archive) {
 
-        if (!empty($_cta_models)) : ?>
+    if (!empty($_cta_models)) : ?>
 
-            <div class="services-hero__cta">
-                <div class="container">
-                    <form class="search-form" method="GET" id="cta-model-form">
-                        <!--noindex-->
-                        <select class="search-form__input" id="cta-model-select">
-                            <option value="" disabled selected hidden>Выберите модель</option>
-                            <?php foreach ($_cta_models as $_m): ?>
-                                <option value="<?= esc_url(get_permalink($_m->ID)) ?>"><?= esc_html($_m->post_title) ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                        <select class="search-form__input" id="cta-device-diagnostic">
-                            <option value="" selected>Выберите неисправность</option>
-                            <?php if ($_first && isset($_cta_diag[$_first])): foreach ($_cta_diag[$_first] as $_d): ?>
-                                    <option value="<?= esc_url($_d['url']) ?>"><?= esc_html($_d['title']) ?></option>
-                            <?php endforeach;
-                            endif; ?>
-                        </select>
-                        <!--/noindex-->
-                        <button type="submit" class="btn btn--orange search-form__btn">Пройти диагностику</button>
-                    </form>
-                </div>
+        <section class="services-hero__cta">
+            <div class="container">
+                <form class="search-form" method="GET" id="cta-model-form">
+                    <!--noindex-->
+                    <select class="search-form__input" id="cta-model-select">
+                        <option value="" disabled selected hidden>Выберите модель</option>
+                        <?php foreach ($_cta_models as $_m): ?>
+                            <option value="<?= esc_url(get_permalink($_m->ID)) ?>"><?= esc_html($_m->post_title) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <select class="search-form__input" id="cta-device-diagnostic">
+                        <option value="" selected>Выберите неисправность</option>
+                        <?php if ($_first && isset($_cta_diag[$_first])): foreach ($_cta_diag[$_first] as $_d): ?>
+                                <option value="<?= esc_url($_d['url']) ?>"><?= esc_html($_d['title']) ?></option>
+                        <?php endforeach;
+                        endif; ?>
+                    </select>
+                    <!--/noindex-->
+                    <button type="submit" class="btn btn--orange search-form__btn">Пройти диагностику</button>
+                </form>
             </div>
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    var form = document.getElementById('cta-model-form');
-                    if (form) {
-                        form.addEventListener('submit', function(e) {
-                            e.preventDefault();
-                            var modelUrl = document.getElementById('cta-model-select').value;
-                            var diagUrl = document.getElementById('cta-device-diagnostic').value;
-                            var url = modelUrl || diagUrl;
-                            if (url) {
-                                window.location.href = url;
-                            } else {
-                                alert('Пожалуйста, выберите модель или неисправность');
-                            }
-                        });
-                    }
-                });
-            </script>
-        <?php elseif (!empty($_cta_devices)) : ?>
-            <div class="services-hero__cta">
-                <div class="container">
-                    <form class="search-form" method="GET" id="cta-diagnostic-form">
-                        <!--noindex-->
-                        <select class="search-form__input" id="cta-device-type" name="device" required>
-                            <option value="" disabled selected>Вид устройства</option>
-                            <?php foreach ($_cta_devices as $_dev): $_slug = sanitize_title($_dev->post_title);
-                                if (!empty($_cta_diag[$_slug])): ?>
-                                    <option value="<?= esc_attr($_slug) ?>" data-id="<?= esc_attr($_dev->ID) ?>"><?= esc_html($_dev->post_title) ?></option>
-                            <?php endif;
-                            endforeach; ?>
-                        </select>
-                        <select class="search-form__input" id="cta-device-diagnostic" name="diagnostic" required>
-                            <option value="" selected>Выберите неисправность</option>
-                            <?php if ($_first && isset($_cta_diag[$_first])): foreach ($_cta_diag[$_first] as $_d): ?>
-                                    <option value="<?= esc_attr($_d['slug']) ?>" data-device="<?= esc_attr($_first) ?>" data-url="<?= esc_url($_d['url']) ?>"><?= esc_html($_d['title']) ?></option>
-                            <?php endforeach;
-                            endif; ?>
-                        </select>
-                        <!--/noindex-->
-                        <button type="submit" class="btn btn--orange search-form__btn">Пройти диагностику</button>
-                    </form>
-                </div>
+        </section>
+        <script>
+
+        </script>
+    <?php elseif (!empty($_cta_devices)) : ?>
+        <div class="services-hero__cta">
+            <div class="container">
+                <form class="search-form" method="GET" id="cta-diagnostic-form">
+                    <!--noindex-->
+                    <select class="search-form__input" id="cta-device-type" name="device" required>
+                        <option value="" disabled selected>Вид устройства</option>
+                        <?php foreach ($_cta_devices as $_dev): $_slug = sanitize_title($_dev->post_title);
+                            if (!empty($_cta_diag[$_slug])): ?>
+                                <option value="<?= esc_attr($_slug) ?>" data-id="<?= esc_attr($_dev->ID) ?>"><?= esc_html($_dev->post_title) ?></option>
+                        <?php endif;
+                        endforeach; ?>
+                    </select>
+                    <select class="search-form__input" id="cta-device-diagnostic" name="diagnostic" required>
+                        <option value="" selected>Выберите неисправность</option>
+                        <?php if ($_first && isset($_cta_diag[$_first])): foreach ($_cta_diag[$_first] as $_d): ?>
+                                <option value="<?= esc_attr($_d['slug']) ?>" data-device="<?= esc_attr($_first) ?>" data-url="<?= esc_url($_d['url']) ?>"><?= esc_html($_d['title']) ?></option>
+                        <?php endforeach;
+                        endif; ?>
+                    </select>
+                    <!--/noindex-->
+                    <button type="submit" class="btn btn--orange search-form__btn">Пройти диагностику</button>
+                </form>
             </div>
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    var diag = <?= json_encode($_cta_diag, JSON_UNESCAPED_UNICODE) ?>;
-                    var devSel = document.getElementById('cta-device-type');
-                    var diagSel = document.getElementById('cta-device-diagnostic');
-                    var form = document.getElementById('cta-diagnostic-form');
-                    if (devSel) {
-                        devSel.addEventListener('change', function() {
-                            var s = this.value,
-                                items = diag[s] || [];
-                            diagSel.innerHTML = '<option value="" selected>Выберите неисправность</option>';
-                            items.forEach(function(d) {
-                                var o = document.createElement('option');
-                                o.value = d.slug;
-                                o.textContent = d.title;
-                                o.setAttribute('data-device', s);
-                                o.setAttribute('data-url', d.url);
-                                diagSel.appendChild(o);
-                            });
-                        });
-                    }
-                    if (form) {
-                        form.addEventListener('submit', function(e) {
-                            e.preventDefault();
-                            var opt = diagSel.options[diagSel.selectedIndex];
-                            var url = opt ? opt.getAttribute('data-url') : null;
-                            if (url) {
-                                window.location.href = url;
-                            } else {
-                                alert('Пожалуйста, выберите устройство и неисправность');
-                            }
-                        });
-                    }
-                });
-            </script>
-        <?php endif;
-        ?>
-        <div class="container">
-            <?php get_template_part('parts/services-list');
-            ?>
         </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var diag = <?= json_encode($_cta_diag, JSON_UNESCAPED_UNICODE) ?>;
+                var devSel = document.getElementById('cta-device-type');
+                var diagSel = document.getElementById('cta-device-diagnostic');
+                var form = document.getElementById('cta-diagnostic-form');
+                if (devSel) {
+                    devSel.addEventListener('change', function() {
+                        var s = this.value,
+                            items = diag[s] || [];
+                        diagSel.innerHTML = '<option value="" selected>Выберите неисправность</option>';
+                        items.forEach(function(d) {
+                            var o = document.createElement('option');
+                            o.value = d.slug;
+                            o.textContent = d.title;
+                            o.setAttribute('data-device', s);
+                            o.setAttribute('data-url', d.url);
+                            diagSel.appendChild(o);
+                        });
+                    });
+                }
+                if (form) {
+                    form.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        var opt = diagSel.options[diagSel.selectedIndex];
+                        var url = opt ? opt.getAttribute('data-url') : null;
+                        if (url) {
+                            window.location.href = url;
+                        } else {
+                            alert('Пожалуйста, выберите устройство и неисправность');
+                        }
+                    });
+                }
+            });
+        </script>
+    <?php endif;
+    ?>
 
-        <?php get_template_part('parts/callback'); ?>
-
-        <div class="white-wrapper m-100">
-
-            <?php get_template_part('parts/faq'); ?>
-
-            <?php get_template_part('parts/features'); ?>
-
-            <?php get_template_part('parts/team'); ?>
-
-            <!--noindex--><?php get_template_part('parts/front-page/reviews'); ?><!--/noindex-->
-        </div>
-
-        <?php get_template_part('parts/problems'); ?>
-        <?php get_template_part('parts/cta2'); ?>
-        <?php get_template_part('parts/contacts'); ?>
-
-
-    <?php
-    } else {
-        get_template_part('parts/service');
-    }
+    <?php get_template_part('parts/services-list');
     ?>
 
 
+    <?php get_template_part('parts/callback'); ?>
+
+    <div class="white-wrapper">
+
+        <?php get_template_part('parts/faq');
+        ?>
+
+        <?php get_template_part('parts/features');
+        ?>
+
+        <?php get_template_part('parts/team-block');
+        ?>
+
+        <!--noindex--><?php get_template_part('parts/reviews'); ?><!--/noindex-->
+    </div>
+
+    <?php get_template_part('parts/problems'); ?>
+    <?php get_template_part('parts/cta2'); ?>
+    <?php get_template_part('parts/contacts'); ?>
 
 
-</div>
-
+<?php
+} else {
+    get_template_part('parts/service');
+}
+?>
 <?php get_footer() ?>

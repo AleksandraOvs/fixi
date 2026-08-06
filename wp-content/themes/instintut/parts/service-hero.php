@@ -6,10 +6,9 @@
 
     $banner_img = get_field('image') ? get_field('image')['sizes']['large'] : '/wp-content/uploads/2026/01/group-243.png';
     ?>
- <div class="services-hero">
+ <section class="services-hero">
 
      <div class="services-hero__content">
-
 
          <?php
             if (!empty($banner_sub)) {
@@ -74,11 +73,8 @@
         ?>
      <div class="services-hero__img">
 
-         <div class="services-hero__img-dec">
-             <img src="/img/dec.svg" alt="">
-         </div>
-
          <img src="<?= $banner_img ?>" alt="" class="services__img">
+         <div class="img-shadow"></div>
      </div>
 
- </div>
+ </section>

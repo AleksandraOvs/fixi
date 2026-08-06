@@ -1,4 +1,4 @@
-<div class="steps">
+<section class="steps">
     <div class="container">
 
         <div class="row auto-h">
@@ -75,4 +75,4 @@
         </div>
 
     </div>
-</div>
+</section>

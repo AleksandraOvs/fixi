@@ -18,7 +18,8 @@ if ($features && is_array($features)) :
 
 ?>
 
-    <div class="features p-100">
+    <section class="features <?php if (is_front_page()) : echo 'p-100';
+                                endif; ?>">
         <?php
         if (is_front_page()) {
             echo '<div class="features__circle"></div>';
@@ -112,6 +113,6 @@ if ($features && is_array($features)) :
 
             </div>
         </div>
-    </div>
+    </section>
 
 <?php endif; ?>

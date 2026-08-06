@@ -57,7 +57,7 @@
     $first_device_slug = array_key_first($diagnostics_by_device);
     ?>
 
- <div class="cta">
+ <section class="cta">
      <div class="container">
          <div class="cta__in">
              <h2>Узнать цену за 1 минуту</h2>
@@ -111,4 +111,4 @@
              <img src="/img/bot2.png" alt="Fixibot">
          </div>
      </div>
- </div>
+ </section>

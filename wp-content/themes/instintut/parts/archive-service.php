@@ -2,7 +2,7 @@
     <?php get_template_part('parts/services-list'); ?>
 </div>
 
-<div class="video m-100">
+<div class="video">
     <div class="container">
         <div class="row auto-h">
             <div class="col-4">
@@ -40,9 +40,10 @@
 
 <?php get_template_part('parts/callback'); ?>
 
-<div class="white-wrapper m-100">
+<div class="white-wrapper">
 
-    <?php get_template_part('parts/faq'); ?>
+    <?php get_template_part('parts/faq');
+    ?>
 
     <?php get_template_part('parts/features'); ?>
 

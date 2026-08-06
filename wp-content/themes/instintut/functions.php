@@ -88,7 +88,12 @@ function theme_scripts()
         wp_enqueue_script('imask', get_template_directory_uri() . '/js/imask.js', array('jquery'), '1', true);
 
         wp_enqueue_script('custom_scripts', get_template_directory_uri() . '/js/common.js', array('jquery'), '2.2');
-
+        wp_enqueue_script('diagnostic-script', get_template_directory_uri() . '/js/diagnostic.js', array(), 0.1, true);
+        wp_enqueue_script('search-box-script', get_template_directory_uri() . '/js/search-box.js', array(), 0.1, true);
+        wp_enqueue_script('team-slider-script', get_template_directory_uri() . '/js/team-slider.js', array(), 0.1, true);
+        wp_enqueue_script('cta2-script', get_template_directory_uri() . '/js/cta2-script.js', array(), 0.1, true);
+        wp_enqueue_script('cta-models-script', get_template_directory_uri() . '/js/cta-models-script.js', array(), 0.1, true);
+        //wp_enqueue_script('services-list-script', get_template_directory_uri() . '/js/services-list-script.js', array(), 0.1, true);
         wp_enqueue_script('modal-script', get_template_directory_uri() . '/js/modals.js', array(), 0.1, true);
         wp_enqueue_script('header-script', get_template_directory_uri() . '/js/header-script.js', array(), 0.1, true);
         wp_enqueue_script('dropdowns-script', get_template_directory_uri() . '/js/dropdowns.js', array(), 0.1, true);

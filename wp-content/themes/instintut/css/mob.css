@@ -1145,6 +1145,10 @@
         padding: 200px 20px 10px;
     }
 
+    ._search-diag::after {
+        content: none;
+    }
+
     .hero__services::after {
         content: '';
         display: block;

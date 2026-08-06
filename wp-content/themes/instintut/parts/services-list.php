@@ -119,463 +119,467 @@ if (count($brands_data) <= 1) {
 }
 ?>
 
-<?php if (!empty($related_models)): ?>
+<section class="services-list">
+    <div class="container">
+        <?php if (!empty($related_models)): ?>
 
-    <div class="card m-80 card_no-padd">
-        <div class="hero-tags m-80" style="<?= $main_hidden ? 'display: none;' : '' ?>">
-            <h2>
-                Выберите марку устройства<br> <span class="accent">для ремонта</span>
-            </h2>
-            <div class="tags-list-in">
-                <ul class="tags-list" id="brand-list">
-                    <?php
-                    $first_brand = true;
-                    foreach ($brands_data as $brand_slug => $brand_name):
-                    ?>
-                        <li>
-                            <a href="#" class="tag-link" data-brand="<?php echo esc_attr($brand_slug); ?>">
-                                <?php echo esc_html($brand_name); ?>
-                            </a>
-                        </li>
-                    <?php
-                        $first_brand = false;
-                    endforeach;
-                    ?>
-                </ul>
-            </div>
-        </div>
-
-        <?php
-        $h2_model = get_field('h2_model') ?: 'Выберите модель';
-        ?>
-
-        <div class="hero-tags m-80">
-            <h2>Выберите модель<br> <span id="model-subtitle" class="accent"><?php echo esc_html(reset($brands_data) ?: ''); ?></span></h2>
-            <div class="tags-list-in">
+            <div class="card">
+                <div class="hero-tags" style="<?= $main_hidden ? 'display: none;' : '' ?>">
+                    <h2>
+                        Выберите марку устройства<br> <span class="accent">для ремонта</span>
+                    </h2>
+                    <div class="tags-list-in">
+                        <ul class="tags-list" id="brand-list">
+                            <?php
+                            $first_brand = true;
+                            foreach ($brands_data as $brand_slug => $brand_name):
+                            ?>
+                                <li>
+                                    <a href="#" class="tag-link" data-brand="<?php echo esc_attr($brand_slug); ?>">
+                                        <?php echo esc_html($brand_name); ?>
+                                    </a>
+                                </li>
+                            <?php
+                                $first_brand = false;
+                            endforeach;
+                            ?>
+                        </ul>
+                    </div>
+                </div>
 
                 <?php
-                // Популярные модели — показываются по умолчанию (индексируются)
-                $popular_slugs = [
-                    'iphone-13',
-                    'iphone-13-mini',
-                    'iphone-13-pro',
-                    'iphone-13-pro-max',
-                    'iphone-14',
-                    'iphone-14-plus',
-                    'iphone-14-pro',
-                    'iphone-14-pro-max',
-                    'iphone-15',
-                    'iphone-15-plus',
-                    'iphone-15-pro',
-                    'iphone-15-pro-max',
-                    'iphone-16',
-                    'iphone-16e',
-                    'iphone-16-plus',
-                    'iphone-16-pro',
-                    'iphone-16-pro-max',
-                    'iphone-17',
-                    'iphone-17-air',
-                    'iphone-17-pro',
-                    'iphone-17-pro-max',
-                ];
-                $has_extra_models = false;
+                $h2_model = get_field('h2_model') ?: 'Выберите модель';
                 ?>
-                <ul class="tags-list" id="model-list">
-                    <?php
-                    if (!empty($brands_data)):
-                        $first_brand_slug = array_key_first($brands_data);
-                        $first_model = true;
 
-                        if (isset($models_by_brand[$first_brand_slug])):
+                <div class="hero-tags">
+                    <h2>Выберите модель<br> <span id="model-subtitle" class="accent"><?php echo esc_html(reset($brands_data) ?: ''); ?></span></h2>
+                    <div class="tags-list-in">
 
-                            $index = 0;
+                        <?php
+                        // Популярные модели — показываются по умолчанию (индексируются)
+                        $popular_slugs = [
+                            'iphone-13',
+                            'iphone-13-mini',
+                            'iphone-13-pro',
+                            'iphone-13-pro-max',
+                            'iphone-14',
+                            'iphone-14-plus',
+                            'iphone-14-pro',
+                            'iphone-14-pro-max',
+                            'iphone-15',
+                            'iphone-15-plus',
+                            'iphone-15-pro',
+                            'iphone-15-pro-max',
+                            'iphone-16',
+                            'iphone-16e',
+                            'iphone-16-plus',
+                            'iphone-16-pro',
+                            'iphone-16-pro-max',
+                            'iphone-17',
+                            'iphone-17-air',
+                            'iphone-17-pro',
+                            'iphone-17-pro-max',
+                        ];
+                        $has_extra_models = false;
+                        ?>
+                        <ul class="tags-list" id="model-list">
+                            <?php
+                            if (!empty($brands_data)):
+                                $first_brand_slug = array_key_first($brands_data);
+                                $first_model = true;
 
-                            foreach ($models_by_brand[$first_brand_slug] as $model):
+                                if (isset($models_by_brand[$first_brand_slug])):
 
-                                $is_hidden = $index >= 10;
+                                    $index = 0;
 
-                                if ($is_hidden) {
-                                    $has_extra_models = true;
-                                }
-                    ?>
-                                <li class="model-item<?php echo $is_hidden ? ' model-item--extra' : ''; ?>"
-                                    data-brand="<?php echo esc_attr($model['brand']); ?>"
-                                    <?php echo $is_hidden ? ' style="display:none;"' : ''; ?>>
+                                    foreach ($models_by_brand[$first_brand_slug] as $model):
 
-                                    <a href="#"
-                                        class="tag-link"
-                                        data-model="<?php echo esc_attr($model['slug']); ?>"
-                                        <?php if (!empty($model['url'])): ?>
-                                        data-url="<?php echo esc_url($model['url']); ?>"
-                                        <?php endif; ?>>
+                                        $is_hidden = $index >= 10;
 
-                                        <span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Ремонт </span>
-                                        <?php echo esc_html($model['title']); ?>
-                                    </a>
+                                        if ($is_hidden) {
+                                            $has_extra_models = true;
+                                        }
+                            ?>
+                                        <li class="model-item<?php echo $is_hidden ? ' model-item--extra' : ''; ?>"
+                                            data-brand="<?php echo esc_attr($model['brand']); ?>"
+                                            <?php echo $is_hidden ? ' style="display:none;"' : ''; ?>>
 
-                                </li>
-                                <?php
-                                $index++;
-                                $first_model = false;
+                                            <a href="#"
+                                                class="tag-link"
+                                                data-model="<?php echo esc_attr($model['slug']); ?>"
+                                                <?php if (!empty($model['url'])): ?>
+                                                data-url="<?php echo esc_url($model['url']); ?>"
+                                                <?php endif; ?>>
 
-                            endforeach;
+                                                <span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Ремонт </span>
+                                                <?php echo esc_html($model['title']); ?>
+                                            </a>
 
-                        endif;
+                                        </li>
+                                        <?php
+                                        $index++;
+                                        $first_model = false;
 
-                        // Остальные модели (скрытые)
-                        foreach ($brands_data as $brand_slug => $brand_name):
-                            if ($brand_slug === $first_brand_slug) continue;
+                                    endforeach;
 
-                            if (isset($models_by_brand[$brand_slug])):
-                                foreach ($models_by_brand[$brand_slug] as $model):
-                                ?>
-                                    <li class="model-item" data-brand="<?php echo esc_attr($model['brand']); ?>" style="display:none;">
-                                        <a href="#" class="tag-link" data-model="<?php echo esc_attr($model['slug']); ?>">
-                                            <span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Ремонт </span><?php echo esc_html($model['title']); ?>
-                                        </a>
-                                    </li>
-                    <?php
+                                endif;
+
+                                // Остальные модели (скрытые)
+                                foreach ($brands_data as $brand_slug => $brand_name):
+                                    if ($brand_slug === $first_brand_slug) continue;
+
+                                    if (isset($models_by_brand[$brand_slug])):
+                                        foreach ($models_by_brand[$brand_slug] as $model):
+                                        ?>
+                                            <li class="model-item" data-brand="<?php echo esc_attr($model['brand']); ?>" style="display:none;">
+                                                <a href="#" class="tag-link" data-model="<?php echo esc_attr($model['slug']); ?>">
+                                                    <span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Ремонт </span><?php echo esc_html($model['title']); ?>
+                                                </a>
+                                            </li>
+                            <?php
+                                        endforeach;
+                                    endif;
                                 endforeach;
                             endif;
-                        endforeach;
-                    endif;
-                    ?>
-                </ul>
-                <?php if ($has_extra_models): ?>
-                    <a href="#" class="tag-link show-all tags-show-more" id="model-show-more">
-                        Показать все модели ↓
-                    </a>
-                <?php endif; ?>
-            </div>
-        </div>
-
-        <?php
-        $h2_problem = get_field('h2_problem') ?: 'Какая проблема с устройством?<br> <span class="accent">Выберите неисправность</span>';
-        ?>
-
-        <div class="hero-tags">
-            <h2><?= $h2_problem ?></h2>
-            <div class="tags-list-in">
-                <ul class="tags-list" id="issue-list">
-                </ul>
-                <a href="#" class="tag-link show-all tags-show-more" id="issue-show-more" style="display:none;">
-                    Показать все неисправности ↓
-                </a>
-            </div>
-        </div>
-    </div>
-<?php endif; ?>
-
-<?php
-$h2_prices = get_field('h2_price') ?: 'Цены за ремонт';
-?>
-
-<div class="pricing-section m-80 card_no-padd">
-    <h2><?= $h2_prices ?> для <?= esc_html($city_name) ?><br>
-        <span id="pricing-title" class="accent">
-            <?= $has_page_prices ? 'Общий прайс' : 'Выберите неисправность...' ?>
-        </span>
-
-    </h2>
-
-    <div class="pricing-table">
-        <div class="pricing-table-header">
-            <div class="pricing-col">Вид ремонта</div>
-            <div class="pricing-col">Стоимость (₽)</div>
-            <div class="pricing-col">Время (мин.)</div>
-        </div>
-
-        <div id="pricing-content">
-            <!--noindex-->
-            <?php if ($has_page_prices) : ?>
-                <?php foreach ($page_prices as $item) : ?>
-                    <div class="pricing-table-row">
-                        <div class="pricing-col" data-label="Услуга:"><?= esc_html($item['title'] ?? '') ?></div>
-                        <div class="pricing-col" data-label="Цена:"><?= esc_html($item['price'] ?? '0') ?> ₽</div>
-                        <div class="pricing-col" data-label="Время:">от <?= esc_html($item['duration'] ?? '0') ?></div>
+                            ?>
+                        </ul>
+                        <?php if ($has_extra_models): ?>
+                            <a href="#" class="tag-link show-all tags-show-more" id="model-show-more">
+                                Показать все модели ↓
+                            </a>
+                        <?php endif; ?>
                     </div>
-                <?php endforeach; ?>
-            <?php elseif (empty($related_models)): ?>
-                <div class="no-results" style="padding: 20px; text-align: center;">Прайс-лист находится в стадии заполнения.</div>
-            <?php endif; ?>
-            <!--/noindex-->
-        </div>
-    </div>
+                </div>
 
-    <div class="pricing-note">
+                <?php
+                $h2_problem = get_field('h2_problem') ?: 'Какая проблема с устройством?<br> <span class="accent">Выберите неисправность</span>';
+                ?>
+
+                <div class="hero-tags">
+                    <h2><?= $h2_problem ?></h2>
+                    <div class="tags-list-in">
+                        <ul class="tags-list" id="issue-list">
+                        </ul>
+                        <a href="#" class="tag-link show-all tags-show-more" id="issue-show-more" style="display:none;">
+                            Показать все неисправности ↓
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
         <?php
-        $phone2 = get_field('phone_2', 'option') ?: [];
-        $tg = get_field('tg', 'option') ?: [];
-        $max = get_field('wa', 'option') ?: [];
+        $h2_prices = get_field('h2_price') ?: 'Цены за ремонт';
         ?>
-        <!-- Contact Info -->
 
-        * Уточняйте стоимость по телефону
+        <div class="pricing-section">
+            <h2><?= $h2_prices ?> для <?= esc_html($city_name) ?><br>
+                <span id="pricing-title" class="accent">
+                    <?= $has_page_prices ? 'Общий прайс' : 'Выберите неисправность...' ?>
+                </span>
 
-        <?php if ($phone2) : ?>
-            <?php $phone_link = preg_replace('/[^\d+]/', '', $phone2); ?>
-            <a href="tel:<?= esc_attr($phone_link); ?>">
-                <?= esc_html($phone2); ?>
-            </a>
-        <?php else : ?>
-            <a href="tel:+73812478180">47-81-80</a>
-        <?php endif; ?>
+            </h2>
 
-        или в
+            <div class="pricing-table">
+                <div class="pricing-table-header">
+                    <div class="pricing-col">Вид ремонта</div>
+                    <div class="pricing-col">Стоимость (₽)</div>
+                    <div class="pricing-col">Время (мин.)</div>
+                </div>
 
-        <?php if ($max) : ?>
-            <a href="<?= esc_url($max); ?>" target="_blank" rel="noopener noreferrer">MAX</a>
-        <?php else : ?>
-            MAX
-        <?php endif; ?>
+                <div id="pricing-content">
+                    <!--noindex-->
+                    <?php if ($has_page_prices) : ?>
+                        <?php foreach ($page_prices as $item) : ?>
+                            <div class="pricing-table-row">
+                                <div class="pricing-col" data-label="Услуга:"><?= esc_html($item['title'] ?? '') ?></div>
+                                <div class="pricing-col" data-label="Цена:"><?= esc_html($item['price'] ?? '0') ?> ₽</div>
+                                <div class="pricing-col" data-label="Время:">от <?= esc_html($item['duration'] ?? '0') ?></div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php elseif (empty($related_models)): ?>
+                        <div class="no-results" style="padding: 20px; text-align: center;">Прайс-лист находится в стадии заполнения.</div>
+                    <?php endif; ?>
+                    <!--/noindex-->
+                </div>
+            </div>
 
-        /
+            <div class="pricing-note">
+                <?php
+                $phone2 = get_field('phone_2', 'option') ?: [];
+                $tg = get_field('tg', 'option') ?: [];
+                $max = get_field('wa', 'option') ?: [];
+                ?>
+                <!-- Contact Info -->
 
-        <?php if ($tg) : ?>
-            <a href="<?= esc_url($tg); ?>" target="_blank" rel="noopener noreferrer">Телеграм</a>
-        <?php else : ?>
-            Telegram
-        <?php endif; ?>
+                * Уточняйте стоимость по телефону
 
-        +7 (908) 119-13-74.
+                <?php if ($phone2) : ?>
+                    <?php $phone_link = preg_replace('/[^\d+]/', '', $phone2); ?>
+                    <a href="tel:<?= esc_attr($phone_link); ?>">
+                        <?= esc_html($phone2); ?>
+                    </a>
+                <?php else : ?>
+                    <a href="tel:+73812478180">47-81-80</a>
+                <?php endif; ?>
 
-    </div>
-</div>
+                или в
 
-<!--noindex-->
-<script>
-    jQuery(document).ready(function($) {
-        // Данные из PHP
-        const pricingData = <?php echo json_encode($pricing_data, JSON_UNESCAPED_UNICODE); ?>;
-        const modelNames = <?php
-                            $model_names_js = [];
-                            foreach ($models_data as $model) {
-                                $model_names_js[$model['slug']] = $model['title'];
-                            }
-                            echo json_encode($model_names_js, JSON_UNESCAPED_UNICODE);
-                            ?>;
-        const issueNames = <?php echo json_encode($all_problems, JSON_UNESCAPED_UNICODE); ?>;
-        const hasPagePrices = <?php echo $has_page_prices ? 'true' : 'false'; ?>;
+                <?php if ($max) : ?>
+                    <a href="<?= esc_url($max); ?>" target="_blank" rel="noopener noreferrer">MAX</a>
+                <?php else : ?>
+                    MAX
+                <?php endif; ?>
 
-        // Текущее состояние
-        let currentBrand = '<?php echo esc_js(!empty($brands_data) ? array_key_first($brands_data) : ''); ?>';
-        // По умолчанию используем модель-источник данных (без плитки) для заполнения issue selector
-        let currentModel = '<?php echo esc_js(!empty($default_issue_model) ? $default_issue_model : (!empty($models_data) ? $models_data[0]['slug'] : '')); ?>';
-        let currentIssue = '';
-        let isUserInteracted = false; // Флаг, чтобы понимать, трогал ли пользователь фильтры
+                /
 
-        // Функция обновления списка доступных проблем
-        function updateAvailableIssues() {
-            if (!currentModel) return;
+                <?php if ($tg) : ?>
+                    <a href="<?= esc_url($tg); ?>" target="_blank" rel="noopener noreferrer">Телеграм</a>
+                <?php else : ?>
+                    Telegram
+                <?php endif; ?>
 
-            const modelData = pricingData[currentModel];
-            const $issueList = $('#issue-list');
-            $issueList.empty();
+                +7 (908) 119-13-74.
 
-            if (!modelData || Object.keys(modelData).length === 0) {
-                $issueList.html('<li><span class="tag-link">Нет данных по поломкам</span></li>');
-                currentIssue = '';
-                return;
-            }
+            </div>
+        </div>
 
-            let isFirst = true;
-            let firstAvailableIssue = '';
+        <!--noindex-->
+        <script>
+            jQuery(document).ready(function($) {
+                // Данные из PHP
+                const pricingData = <?php echo json_encode($pricing_data, JSON_UNESCAPED_UNICODE); ?>;
+                const modelNames = <?php
+                                    $model_names_js = [];
+                                    foreach ($models_data as $model) {
+                                        $model_names_js[$model['slug']] = $model['title'];
+                                    }
+                                    echo json_encode($model_names_js, JSON_UNESCAPED_UNICODE);
+                                    ?>;
+                const issueNames = <?php echo json_encode($all_problems, JSON_UNESCAPED_UNICODE); ?>;
+                const hasPagePrices = <?php echo $has_page_prices ? 'true' : 'false'; ?>;
 
-            for (const [issueSlug, issueLabel] of Object.entries(issueNames)) {
-                if (modelData.hasOwnProperty(issueSlug)) {
+                // Текущее состояние
+                let currentBrand = '<?php echo esc_js(!empty($brands_data) ? array_key_first($brands_data) : ''); ?>';
+                // По умолчанию используем модель-источник данных (без плитки) для заполнения issue selector
+                let currentModel = '<?php echo esc_js(!empty($default_issue_model) ? $default_issue_model : (!empty($models_data) ? $models_data[0]['slug'] : '')); ?>';
+                let currentIssue = '';
+                let isUserInteracted = false; // Флаг, чтобы понимать, трогал ли пользователь фильтры
 
-                    const activeClass = (isFirst && isUserInteracted) ? 'active' : '';
+                // Функция обновления списка доступных проблем
+                function updateAvailableIssues() {
+                    if (!currentModel) return;
 
-                    const li = `<li>
+                    const modelData = pricingData[currentModel];
+                    const $issueList = $('#issue-list');
+                    $issueList.empty();
+
+                    if (!modelData || Object.keys(modelData).length === 0) {
+                        $issueList.html('<li><span class="tag-link">Нет данных по поломкам</span></li>');
+                        currentIssue = '';
+                        return;
+                    }
+
+                    let isFirst = true;
+                    let firstAvailableIssue = '';
+
+                    for (const [issueSlug, issueLabel] of Object.entries(issueNames)) {
+                        if (modelData.hasOwnProperty(issueSlug)) {
+
+                            const activeClass = (isFirst && isUserInteracted) ? 'active' : '';
+
+                            const li = `<li>
                     <a href="#" class="tag-link ${activeClass}" data-issue="${issueSlug}">
                         ${issueLabel}
                     </a>
                 </li>`;
 
-                    $issueList.append(li);
+                            $issueList.append(li);
 
-                    if (isFirst) {
-                        firstAvailableIssue = issueSlug;
-                        isFirst = false;
+                            if (isFirst) {
+                                firstAvailableIssue = issueSlug;
+                                isFirst = false;
+                            }
+                        }
+                    }
+
+                    currentIssue = firstAvailableIssue; // ← currentIssue уже актуален когда придёт updatePricing
+
+                    // Hide extra items after limit, reset button state
+                    var _limit = 5;
+                    var _btn = document.getElementById('issue-show-more');
+                    $issueList.children().each(function(i, el) {
+                        $(el).removeClass('tag-extra');
+                        if (i >= _limit) {
+                            $(el).addClass('tag-extra').hide();
+                        } else {
+                            $(el).show();
+                        }
+                    });
+                    if (_btn) {
+                        if ($issueList.children().length > _limit) {
+                            _btn.textContent = 'Показать все неисправности ↓';
+                            _btn.style.display = 'flex';
+                        } else {
+                            _btn.style.display = 'none';
+                        }
                     }
                 }
-            }
 
-            currentIssue = firstAvailableIssue; // ← currentIssue уже актуален когда придёт updatePricing
+                // Функция обновления таблицы прайса
+                function updatePricing() {
+                    // Если есть общие цены и юзер еще ничего не кликал - ничего не перезаписываем
+                    if (hasPagePrices && !isUserInteracted) {
+                        return;
+                    }
 
-            // Hide extra items after limit, reset button state
-            var _limit = 5;
-            var _btn = document.getElementById('issue-show-more');
-            $issueList.children().each(function(i, el) {
-                $(el).removeClass('tag-extra');
-                if (i >= _limit) {
-                    $(el).addClass('tag-extra').hide();
-                } else {
-                    $(el).show();
-                }
-            });
-            if (_btn) {
-                if ($issueList.children().length > _limit) {
-                    _btn.textContent = 'Показать все неисправности ↓';
-                    _btn.style.display = 'flex';
-                } else {
-                    _btn.style.display = 'none';
-                }
-            }
-        }
+                    if (!currentModel) return;
 
-        // Функция обновления таблицы прайса
-        function updatePricing() {
-            // Если есть общие цены и юзер еще ничего не кликал - ничего не перезаписываем
-            if (hasPagePrices && !isUserInteracted) {
-                return;
-            }
+                    const modelData = pricingData[currentModel];
+                    if (modelData && !modelData[currentIssue]) {
+                        currentIssue = Object.keys(modelData)[0] || '';
 
-            if (!currentModel) return;
+                        setTimeout(function() {
+                            $('#issue-list .tag-link').removeClass('active');
+                            $('#issue-list .tag-link').first().addClass('active');
+                        }, 0);
+                    }
 
-            const modelData = pricingData[currentModel];
-            if (modelData && !modelData[currentIssue]) {
-                currentIssue = Object.keys(modelData)[0] || '';
+                    const issueData = (modelData && currentIssue) ? modelData[currentIssue] : null;
+                    const modelName = modelNames[currentModel] || currentModel;
+                    const issueName = issueNames[currentIssue] || 'Услуги для ' + modelName;
 
-                setTimeout(function() {
-                    $('#issue-list .tag-link').removeClass('active');
-                    $('#issue-list .tag-link').first().addClass('active');
-                }, 0);
-            }
+                    $('#pricing-title').text(issueName);
 
-            const issueData = (modelData && currentIssue) ? modelData[currentIssue] : null;
-            const modelName = modelNames[currentModel] || currentModel;
-            const issueName = issueNames[currentIssue] || 'Услуги для ' + modelName;
+                    if (issueData && issueData.length > 0) {
+                        let html = '';
+                        issueData.forEach(function(item) {
+                            html += '<div class="pricing-table-row">';
 
-            $('#pricing-title').text(issueName);
+                            // Проверяем наличие service_link
+                            if (item.service_link && item.service_link.trim() !== '') {
+                                html += '<div class="pricing-col" data-label="Услуга:"><a href="' + item.service_link + '">' + item.service + '</a></div>';
+                            } else {
+                                html += '<div class="pricing-col" data-label="Услуга:">' + item.service + '</div>';
+                            }
 
-            if (issueData && issueData.length > 0) {
-                let html = '';
-                issueData.forEach(function(item) {
-                    html += '<div class="pricing-table-row">';
-
-                    // Проверяем наличие service_link
-                    if (item.service_link && item.service_link.trim() !== '') {
-                        html += '<div class="pricing-col" data-label="Услуга:"><a href="' + item.service_link + '">' + item.service + '</a></div>';
+                            html += '<div class="pricing-col" data-label="Цена:">' + item.price.toLocaleString('ru-RU') + ' ₽</div>';
+                            html += '<div class="pricing-col" data-label="Время:">от ' + item.time + '</div>';
+                            html += '</div>';
+                        });
+                        $('#pricing-content').html(html);
                     } else {
-                        html += '<div class="pricing-col" data-label="Услуга:">' + item.service + '</div>';
+                        $('#pricing-content').html('<div class="no-results" style="padding: 20px; text-align: center;">Для выбранной модели и неисправности цены уточняются.</div>');
+                    }
+                }
+
+                // --- ОБРАБОТЧИКИ СОБЫТИЙ ---
+
+                // 1. Выбор БРЕНДА
+                $('#brand-list').on('click', '.tag-link', function(e) {
+                    e.preventDefault();
+                    isUserInteracted = true; // Снимаем блокировку перезаписи прайса
+
+                    $('#brand-list .tag-link').removeClass('active');
+                    $(this).addClass('active');
+
+                    currentBrand = $(this).data('brand');
+                    $('#model-subtitle').text($(this).text());
+
+                    $('.model-item').hide();
+
+                    const $brandModels = $('.model-item[data-brand="' + currentBrand + '"]');
+
+                    $brandModels.each(function(index) {
+                        if (index < 10) {
+                            $(this).show();
+                        } else {
+                            $(this).hide().addClass('model-item--extra');
+                        }
+                    });
+
+                    $('#model-show-more')
+                        .text('Показать все модели ↓')
+                        .toggle($brandModels.length > 10);
+
+                    if ($brandModels.length > 0) {
+                        const $firstModelLink = $brandModels.first().find('.tag-link');
+                        $('#model-list .tag-link').removeClass('active');
+                        $firstModelLink.addClass('active');
+                        currentModel = $firstModelLink.data('model');
                     }
 
-                    html += '<div class="pricing-col" data-label="Цена:">' + item.price.toLocaleString('ru-RU') + ' ₽</div>';
-                    html += '<div class="pricing-col" data-label="Время:">от ' + item.time + '</div>';
-                    html += '</div>';
+                    updateAvailableIssues();
+                    updatePricing();
                 });
-                $('#pricing-content').html(html);
-            } else {
-                $('#pricing-content').html('<div class="no-results" style="padding: 20px; text-align: center;">Для выбранной модели и неисправности цены уточняются.</div>');
-            }
-        }
 
-        // --- ОБРАБОТЧИКИ СОБЫТИЙ ---
+                // 2. Выбор МОДЕЛИ
+                $('#model-list').on('click', '.tag-link', function(e) {
+                    e.preventDefault();
+                    if ($(this).data('action') === 'show-all') return;
 
-        // 1. Выбор БРЕНДА
-        $('#brand-list').on('click', '.tag-link', function(e) {
-            e.preventDefault();
-            isUserInteracted = true; // Снимаем блокировку перезаписи прайса
+                    const targetUrl = $(this).data('url');
+                    if (targetUrl) {
+                        window.location.href = targetUrl;
+                        return;
+                    }
 
-            $('#brand-list .tag-link').removeClass('active');
-            $(this).addClass('active');
+                    isUserInteracted = true;
 
-            currentBrand = $(this).data('brand');
-            $('#model-subtitle').text($(this).text());
+                    $('#model-list .tag-link').removeClass('active');
+                    $(this).addClass('active');
 
-            $('.model-item').hide();
+                    currentModel = $(this).data('model');
 
-            const $brandModels = $('.model-item[data-brand="' + currentBrand + '"]');
+                    updateAvailableIssues();
+                    updatePricing();
+                });
 
-            $brandModels.each(function(index) {
-                if (index < 10) {
-                    $(this).show();
-                } else {
-                    $(this).hide().addClass('model-item--extra');
-                }
+                // Кнопка "Показать все неисправности"
+                $('#issue-show-more').on('click', function(e) {
+                    e.preventDefault();
+                    var extras = $('#issue-list .tag-extra');
+                    if (extras.first().is(':hidden')) {
+                        extras.show();
+                        $(this).text('Свернуть ↑');
+                    } else {
+                        extras.hide();
+                        $(this).text('Показать все неисправности ↓');
+                    }
+                });
+
+                // 3. Выбор ПРОБЛЕМЫ
+                $('#issue-list').on('click', '.tag-link', function(e) {
+                    e.preventDefault();
+
+                    isUserInteracted = true;
+
+                    $('#issue-list .tag-link').removeClass('active');
+                    $(this).addClass('active');
+
+                    currentIssue = $(this).data('issue');
+                    updatePricing();
+                });
+
+                // Инициализация при первой загрузке
+                updateAvailableIssues();
+
+                // Показать все модели
+                $('#model-show-more').on('click', function(e) {
+                    e.preventDefault();
+                    var brand = '<?php echo esc_js(!empty($brands_data) ? array_key_first($brands_data) : ''); ?>';
+                    var $extras = $('.model-item--extra[data-brand="' + (currentBrand || brand) + '"]');
+                    if ($extras.first().is(':hidden')) {
+                        $extras.show();
+                        $(this).text('Свернуть ↑');
+                    } else {
+                        $extras.hide();
+                        $(this).text('Показать все модели ↓');
+                    }
+                });
+
+                updatePricing();
             });
-
-            $('#model-show-more')
-                .text('Показать все модели ↓')
-                .toggle($brandModels.length > 10);
-
-            if ($brandModels.length > 0) {
-                const $firstModelLink = $brandModels.first().find('.tag-link');
-                $('#model-list .tag-link').removeClass('active');
-                $firstModelLink.addClass('active');
-                currentModel = $firstModelLink.data('model');
-            }
-
-            updateAvailableIssues();
-            updatePricing();
-        });
-
-        // 2. Выбор МОДЕЛИ
-        $('#model-list').on('click', '.tag-link', function(e) {
-            e.preventDefault();
-            if ($(this).data('action') === 'show-all') return;
-
-            const targetUrl = $(this).data('url');
-            if (targetUrl) {
-                window.location.href = targetUrl;
-                return;
-            }
-
-            isUserInteracted = true;
-
-            $('#model-list .tag-link').removeClass('active');
-            $(this).addClass('active');
-
-            currentModel = $(this).data('model');
-
-            updateAvailableIssues();
-            updatePricing();
-        });
-
-        // Кнопка "Показать все неисправности"
-        $('#issue-show-more').on('click', function(e) {
-            e.preventDefault();
-            var extras = $('#issue-list .tag-extra');
-            if (extras.first().is(':hidden')) {
-                extras.show();
-                $(this).text('Свернуть ↑');
-            } else {
-                extras.hide();
-                $(this).text('Показать все неисправности ↓');
-            }
-        });
-
-        // 3. Выбор ПРОБЛЕМЫ
-        $('#issue-list').on('click', '.tag-link', function(e) {
-            e.preventDefault();
-
-            isUserInteracted = true;
-
-            $('#issue-list .tag-link').removeClass('active');
-            $(this).addClass('active');
-
-            currentIssue = $(this).data('issue');
-            updatePricing();
-        });
-
-        // Инициализация при первой загрузке
-        updateAvailableIssues();
-
-        // Показать все модели
-        $('#model-show-more').on('click', function(e) {
-            e.preventDefault();
-            var brand = '<?php echo esc_js(!empty($brands_data) ? array_key_first($brands_data) : ''); ?>';
-            var $extras = $('.model-item--extra[data-brand="' + (currentBrand || brand) + '"]');
-            if ($extras.first().is(':hidden')) {
-                $extras.show();
-                $(this).text('Свернуть ↑');
-            } else {
-                $extras.hide();
-                $(this).text('Показать все модели ↓');
-            }
-        });
-
-        updatePricing();
-    });
-</script><!--/noindex-->
+        </script><!--/noindex-->
+    </div>
+</section>
