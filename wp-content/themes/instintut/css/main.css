@@ -368,6 +368,10 @@ header {
     padding: 40px;
 }
 
+.wp-singular.service-template-default {
+    background: var(--svetlo-goluboy);
+}
+
 .hero__services {
     margin-top: -44px;
     padding: 40px;
@@ -1189,6 +1193,7 @@ h2.about-item__title {
 .faq {
     position: relative;
     overflow: hidden;
+    padding-top: 70px;
 }
 
 .faq-form {
@@ -1316,6 +1321,10 @@ h2.about-item__title {
     padding: 49px 39px;
     box-shadow: 2px 4px 10px 0 rgba(11, 70, 122, 0.1), 7px 17px 19px 0 rgba(11, 70, 122, 0.09), 16px 39px 25px 0 rgba(11, 70, 122, 0.05), 29px 70px 30px 0 rgba(11, 70, 122, 0.01), 45px 109px 33px 0 rgba(11, 70, 122, 0);
     background: var(--siniy);
+}
+
+.cta2 {
+    padding-top: 80px;
 }
 
 .cta2__in h2 {
@@ -2486,6 +2495,10 @@ h1 span {
     width: 1000px;
     pointer-events: none;
     z-index: -1;
+}
+
+.services-list .container .card {
+    margin-bottom: 40px;
 }
 
 .card {
