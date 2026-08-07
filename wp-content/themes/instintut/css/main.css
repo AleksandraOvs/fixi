@@ -1325,6 +1325,7 @@ h2.about-item__title {
 
 .cta2 {
     padding-top: 80px;
+    padding-bottom: 0;
 }
 
 .cta2__in h2 {
@@ -1343,6 +1344,10 @@ h2.about-item__title {
 
 .cta2__in .search-form__btn.btn {
     width: 100%;
+}
+
+#contacts {
+    padding-top: 80px;
 }
 
 .map__frame iframe {
