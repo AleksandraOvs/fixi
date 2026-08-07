@@ -459,6 +459,7 @@ footer {
     font-size: 16px;
     line-height: 125%;
     color: var(--belyy);
+    margin-top: -19px;
 }
 
 footer a {
@@ -1327,6 +1328,7 @@ h2.about-item__title {
     padding-top: 80px;
     padding-bottom: 0;
 }
+
 
 .cta2__in h2 {
     font-size: 32px;
