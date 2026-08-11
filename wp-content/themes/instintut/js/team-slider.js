@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     slidesPerView: 2,
                     spaceBetween: 20,
                     slidesOffsetBefore: 0,
-                    slidesOffsetAfter: 0
+                    slidesOffsetAfter: 0,
                 },
 
                 // Десктоп
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     slidesPerView: 2,
                     spaceBetween: 40,
                     slidesOffsetBefore: 0,
-                    slidesOffsetAfter: 0
+                    slidesOffsetAfter: 0,
                 }
             }
         });
