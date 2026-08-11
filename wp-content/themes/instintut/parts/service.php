@@ -6,7 +6,7 @@ $max = get_field('wa', 'option') ?: [];
 ?>
 
 <?php if (count($prices)) : ?>
-    <div class="prices p-100">
+    <div class="prices">
         <div class="container">
             <div class="row auto-h">
                 <div class="col-8">
