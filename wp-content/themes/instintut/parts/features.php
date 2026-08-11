@@ -95,11 +95,7 @@ if ($features && is_array($features)) :
                                             </div>
                                         <?php endif; ?>
 
-                                        <?php if ($text): ?>
-                                            <div class="feature-item__sub">
-                                                <?= esc_html(wp_strip_all_tags($text)); ?>
-                                            </div>
-                                        <?php endif; ?>
+                                        <?php if ($text): ?> <div class="feature-item__sub"> <?= wp_kses($text, ['br' => []]); ?> </div> <?php endif; ?>
                                     </div>
                                 </div>
                             </li>
