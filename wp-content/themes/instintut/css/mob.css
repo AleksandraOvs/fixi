@@ -1166,6 +1166,22 @@
 
 }
 
+@media (max-width: 639px) {
+    .team-item__photo {
+        width: 100%;
+        height: 235px;
+    }
+
+    .team-list-slider .swiper-slide {
+        width: 60%;
+    }
+
+    .team-item__content {
+        min-height: 132px;
+    }
+
+}
+
 @media (max-width: 576px) {
     .solution-card {
         flex-direction: column;
@@ -1209,6 +1225,19 @@
     .p-100 {
         padding-bottom: 40px;
     }
+
+    .team-item__photo img {
+        width: 100%;
+        object-fit: contain;
+        object-position: top;
+        display: block;
+        margin: 0 auto;
+        height: 100%;
+        transform: translateY(30px);
+        z-index: -1;
+        position: relative;
+    }
+
 }
 
 @media (max-width: 480px) {
