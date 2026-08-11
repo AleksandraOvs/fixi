@@ -1187,6 +1187,11 @@
         overflow: hidden;
     }
 
+    .team h2,
+    .team__sub {
+        text-align: left;
+    }
+
 }
 
 @media (max-width: 576px) {

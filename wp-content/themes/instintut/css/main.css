@@ -694,6 +694,7 @@ footer a {
 h2 span {
     font-weight: 700;
     color: var(--siniy);
+    display: block;
 }
 
 .search-form {
