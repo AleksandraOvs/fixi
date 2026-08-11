@@ -1141,27 +1141,8 @@
         background: var(--svetlo-goluboy);
     }
 
-    .hero__services {
-        padding: 200px 20px 10px;
-    }
-
     ._search-diag::after {
         content: none;
-    }
-
-    .hero__services::after {
-        content: '';
-        display: block;
-        width: 200px;
-        height: 200px;
-        background: url(/img/bot.png) no-repeat;
-        background-position: center;
-        background-size: contain;
-        position: absolute;
-        right: calc(50% - 100px);
-        top: 0;
-        animation: bot-wiggle 2s ease-in-out infinite alternate;
-        left: unset;
     }
 
 }
