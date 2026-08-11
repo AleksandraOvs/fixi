@@ -1180,6 +1180,13 @@
         min-height: 132px;
     }
 
+    .team-item__text {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+        overflow: hidden;
+    }
+
 }
 
 @media (max-width: 576px) {
