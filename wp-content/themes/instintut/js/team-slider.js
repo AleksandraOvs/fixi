@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Десктоп
                 992: {
                     slidesPerView: 2,
-                    spaceBetween: 40,
+                    spaceBetween: 0,
                     slidesOffsetBefore: 0,
                     slidesOffsetAfter: 0,
                 }
