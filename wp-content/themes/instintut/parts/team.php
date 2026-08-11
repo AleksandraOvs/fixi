@@ -52,7 +52,7 @@ $team = get_posts([
     </div>
 </div>
 
-<script>
+<!-- <script>
     document.addEventListener('DOMContentLoaded', function() {
 
         const teamSlider = new Swiper('.team-list-slider', {
@@ -88,4 +88,4 @@ $team = get_posts([
 
 
     });
-</script>
+</script> -->

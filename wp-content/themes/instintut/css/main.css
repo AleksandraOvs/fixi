@@ -1167,6 +1167,10 @@ h2.about-item__title {
     position: relative;
 }
 
+.video {
+    padding-bottom: 0;
+}
+
 .video__in img {
     width: 100%;
     height: auto;

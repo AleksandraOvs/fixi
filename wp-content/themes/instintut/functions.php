@@ -94,6 +94,13 @@ function theme_scripts()
         wp_enqueue_script('dropdowns-script', get_template_directory_uri() . '/js/dropdowns.js', array(), 0.1, true);
         wp_enqueue_script('search-script', get_template_directory_uri() . '/js/search.js', array(), 0.1, true);
         wp_enqueue_script('mobile-menu-script', get_template_directory_uri() . '/js/mobile-menu.js', array(), 0.1, true);
+
+        wp_enqueue_script('services-list-scripts', get_template_directory_uri() . '/js/services-list-scripts.js', array(), 0.1, true);
+        //wp_enqueue_script('search-box-scripts', get_template_directory_uri() . '/js/search-box.js', array(), 0.1, true);
+        //wp_enqueue_script('diagnostic-scripts', get_template_directory_uri() . '/js/diagnostic.js', array(), 0.1, true);
+
+
+        wp_enqueue_script('team-slider', get_template_directory_uri() . '/js/team-slider.js', array(), 0.1, true);
     }
 }
 

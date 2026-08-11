@@ -13,16 +13,15 @@ $device_categories = get_posts(array(
     'order' => 'ASC',
 ));
 
-// Собираем данные по устройствам
+// Собираем диагностики по устройствам
 $diagnostics_by_device = [];
 $models_by_device = [];
-$brands_by_device = [];
 
 foreach ($device_categories as $category) {
     $device_id = $category->ID;
     $device_slug = sanitize_title($category->post_title);
 
-    // 1. Получаем все диагностики
+    // Получаем все диагностики, связанные с этим устройством
     $diagnostics_query = new WP_Query([
         'post_type' => 'diagnostic',
         'posts_per_page' => -1,
@@ -54,25 +53,7 @@ foreach ($device_categories as $category) {
         wp_reset_postdata();
     }
 
-    // 2. Проверяем наличие брендов (ACF repeater)
-    $device_brands = get_field('brands', $device_id);
-    if ($device_brands && is_array($device_brands)) {
-        $brands_by_device[$device_slug] = [];
-        foreach ($device_brands as $brand) {
-            // Учитываем, что поле link может отдавать как строку, так и массив (в зависимости от настроек ACF)
-            $brand_link = '#';
-            if (!empty($brand['link'])) {
-                $brand_link = is_array($brand['link']) ? $brand['link']['url'] : $brand['link'];
-            }
-
-            $brands_by_device[$device_slug][] = [
-                'title' => $brand['title'],
-                'url' => $brand_link
-            ];
-        }
-    }
-
-    // 3. Получаем модели, если они есть
+    // Получаем модели для визуального блока
     $related_models = get_field('models', $device_id);
     if ($related_models && is_array($related_models)) {
         $models_by_device[$device_slug] = [];
@@ -92,15 +73,18 @@ foreach ($device_categories as $category) {
 $first_device_slug = array_key_first($diagnostics_by_device);
 ?>
 
-<section class="hero__search-box">
+<div class="hero__search-box m-100">
     <div class="container">
 
+        <!-- Форма поиска диагностики -->
         <form class="search-form" method="GET" id="diagnostic-search-form">
 
+            <!-- 1. Вид устройства -->
             <select class="search-form__input" id="device-type" name="device" required>
                 <option value="" disabled selected>Вид устройства</option>
                 <?php foreach ($device_categories as $category):
                     $device_slug = sanitize_title($category->post_title);
+                    // Показываем только категории, у которых есть диагностики
                     if (!empty($diagnostics_by_device[$device_slug])):
                 ?>
                         <option value="<?php echo esc_attr($device_slug); ?>" data-id="<?php echo esc_attr($category->ID); ?>">
@@ -112,9 +96,11 @@ $first_device_slug = array_key_first($diagnostics_by_device);
                 ?>
             </select>
 
+            <!-- 2. Неисправность -->
             <select class="search-form__input" id="device-diagnostic" name="diagnostic" required>
                 <option value="" selected>Выберите неисправность</option>
                 <?php
+                // Выводим диагностики первой категории
                 if ($first_device_slug && isset($diagnostics_by_device[$first_device_slug])):
                     foreach ($diagnostics_by_device[$first_device_slug] as $diagnostic):
                 ?>
@@ -131,10 +117,11 @@ $first_device_slug = array_key_first($diagnostics_by_device);
             </select>
 
             <button type="submit" class="btn btn--orange search-form__btn">
-                Провести диагностику
+                Узнать стоимость ремонта
             </button>
         </form>
 
+        <!-- Блок категорий устройств -->
         <div class="hero__services">
             <h2 class="hero__services-title">
                 мы ремонтируем технику
@@ -166,6 +153,7 @@ $first_device_slug = array_key_first($diagnostics_by_device);
                 foreach ($device_categories as $index => $category):
                     $device_slug = sanitize_title($category->post_title);
 
+                    // Показываем только категории с диагностиками
                     if (empty($diagnostics_by_device[$device_slug])) continue;
 
                     $icon = get_field('device-icon', $category->ID);
@@ -196,61 +184,221 @@ $first_device_slug = array_key_first($diagnostics_by_device);
             </div>
         </div>
 
+        <!-- Блок популярных моделей -->
         <div class="hero__tags">
             <h2>
                 ремонтируем популярные
-                <br>бренды и модели техники.
-                <br><span id="device-subtitle">выберите ваш вариант</span>
+                <br>модели техники.
+                <br><span id="device-subtitle">выберите вашу модель</span>
             </h2>
 
             <div class="tags-list__in">
                 <ul class="tags-list" id="models-list">
                     <?php
-                    // Проходим по всем устройствам, чтобы сразу вывести все теги (скрытые и видимые)
-                    foreach ($device_categories as $category):
-                        $device_slug = sanitize_title($category->post_title);
-                        $is_first = ($device_slug === $first_device_slug);
-                        $display_style = $is_first ? '' : 'display:none;';
-
-                        // Логика: если есть бренды, выводим их
-                        if (!empty($brands_by_device[$device_slug])) {
-                            foreach ($brands_by_device[$device_slug] as $brand):
+                    // Выводим модели первой категории
+                    if ($first_device_slug && isset($models_by_device[$first_device_slug])):
+                        foreach ($models_by_device[$first_device_slug] as $model):
                     ?>
-                                <li class="model-tag" data-device="<?php echo esc_attr($device_slug); ?>" style="<?php echo $display_style; ?>">
-                                    <a href="<?php echo esc_url($brand['url']); ?>">
-                                        <?php echo esc_html($brand['title']); ?>
-                                    </a>
-                                </li>
-                            <?php
-                            endforeach;
-                        }
-                        // Иначе, если брендов нет, выводим модели
-                        elseif (!empty($models_by_device[$device_slug])) {
-                            foreach ($models_by_device[$device_slug] as $model):
-                            ?>
-                                <li class="model-tag" data-device="<?php echo esc_attr($device_slug); ?>" style="<?php echo $display_style; ?>">
-                                    <?php if (get_field('page_link', $model['id'])) : ?>
-                                        <a href="<?= get_field('page_link', $model['id']) ?>">
-                                            <?php echo esc_html($model['title']); ?>
-                                        </a>
-                                    <?php else : ?>
-                                        <a href="#" data-toggle="modal" data-target="#lead-modal">
-                                            <?php echo esc_html($model['title']); ?>
-                                        </a>
-                                    <?php endif ?>
-                                </li>
+                            <li class="model-tag" data-device="<?php echo esc_attr($first_device_slug); ?>">
+                                <a href="#" data-toggle="modal" data-target="#lead-modal">
+                                    <?php echo esc_html($model['title']); ?>
+                                </a>
+                            </li>
+                        <?php
+                        endforeach;
+                    endif;
+
+                    // Остальные модели (скрытые)
+                    foreach ($models_by_device as $device_slug => $models):
+                        if ($device_slug === $first_device_slug) continue;
+
+                        foreach ($models as $model):
+                        ?>
+                            <li class="model-tag" data-device="<?php echo esc_attr($device_slug); ?>" style="display:none;">
+                                <a href="#" data-toggle="modal" data-target="#lead-modal">
+                                    <?php echo esc_html($model['title']); ?>
+                                </a>
+                            </li>
                     <?php
-                            endforeach;
-                        }
+                        endforeach;
                     endforeach;
                     ?>
 
                     <li class="model-tag-none">
-                        <a href="#" data-toggle="modal" data-target="#question-modal">Нет нужного</a>
+                        <a href="#" data-toggle="modal" data-target="#lead-modal">Нет нужного</a>
                     </li>
                 </ul>
             </div>
         </div>
 
     </div>
-</section>
+</div>
+
+
+<script>
+    jQuery(document).ready(function($) {
+        // Данные из PHP
+        const diagnosticsByDevice = <?php echo json_encode($diagnostics_by_device, JSON_UNESCAPED_UNICODE); ?>;
+        const modelsByDevice = <?php echo json_encode($models_by_device, JSON_UNESCAPED_UNICODE); ?>;
+
+        let currentDevice = '<?php echo esc_js($first_device_slug ?? ''); ?>';
+
+        // === ПЕРЕКЛЮЧЕНИЕ ИКОНОК ===
+        function toggleIconOnActive($element) {
+            const $img = $element.find('.service-item__img img');
+            const hoverIcon = $element.data('hover');
+            const originalIcon = $element.data('original');
+
+            if ($element.hasClass('active') && hoverIcon) {
+                $img.attr('src', hoverIcon);
+            } else if (originalIcon) {
+                $img.attr('src', originalIcon);
+            }
+        }
+
+        // Применяем к активной категории при загрузке
+        $('.device-category-filter.active').each(function() {
+            toggleIconOnActive($(this));
+        });
+
+        // === ОБНОВЛЕНИЕ SELECT С ДИАГНОСТИКАМИ ===
+        function updateDiagnosticsSelect(deviceSlug) {
+            const $diagnosticSelect = $('#device-diagnostic');
+            const diagnostics = diagnosticsByDevice[deviceSlug] || [];
+
+            $diagnosticSelect.html('<option value="" selected>Выберите неисправность</option>');
+
+            if (diagnostics.length > 0) {
+                diagnostics.forEach(function(diagnostic) {
+                    const option = $('<option>')
+                        .val(diagnostic.slug)
+                        .text(diagnostic.title)
+                        .attr('data-device', deviceSlug)
+                        .attr('data-url', diagnostic.url);
+                    $diagnosticSelect.append(option);
+                });
+            } else {
+                $diagnosticSelect.html('<option value="" disabled>Диагностики не найдены</option>');
+            }
+        }
+
+        // === ОБНОВЛЕНИЕ ВИЗУАЛЬНЫХ МОДЕЛЕЙ ===
+        function updateVisualModels(deviceSlug) {
+            $('.model-tag').hide();
+            $('.model-tag[data-device="' + deviceSlug + '"]').show();
+        }
+
+        // === КЛИК ПО КАТЕГОРИИ УСТРОЙСТВА (.service-item) ===
+        $('.device-category-filter').on('click', function(e) {
+            e.preventDefault();
+
+            // Убираем active у всех и возвращаем оригинальные иконки
+            $('.device-category-filter').each(function() {
+                $(this).removeClass('active');
+                toggleIconOnActive($(this));
+            });
+
+            // Добавляем active к выбранному
+            $(this).addClass('active');
+            toggleIconOnActive($(this));
+
+            currentDevice = $(this).data('device');
+
+            const deviceName = $(this).find('span').text().trim();
+            $('#device-subtitle').text(deviceName.toLowerCase());
+
+            // Обновляем select с диагностиками
+            updateDiagnosticsSelect(currentDevice);
+
+            // Обновляем select типа устройства
+            $('#device-type').val(currentDevice);
+
+            // Обновляем визуальные модели
+            updateVisualModels(currentDevice);
+
+            // Скролл к моделям
+            $('html, body').animate({
+                scrollTop: $('#models-list').offset().top - 260
+            }, 600);
+        });
+
+        // === ФОРМА ПОИСКА: выбор типа устройства ===
+        $('#device-type').on('change', function() {
+            const selectedDevice = $(this).val();
+
+            if (selectedDevice) {
+                currentDevice = selectedDevice;
+
+                // Обновляем диагностики
+                updateDiagnosticsSelect(selectedDevice);
+
+                // Обновляем визуальные модели БЕЗ СКРОЛЛА
+                updateVisualModels(selectedDevice);
+
+                // Визуально активируем категорию
+                $('.device-category-filter').each(function() {
+                    $(this).removeClass('active');
+                    toggleIconOnActive($(this));
+                });
+
+                const $activeCategory = $('.device-category-filter[data-device="' + selectedDevice + '"]');
+                $activeCategory.addClass('active');
+                toggleIconOnActive($activeCategory);
+
+                // Обновляем заголовок
+                const deviceName = $activeCategory.find('span').text().trim();
+                if (deviceName) {
+                    $('#device-subtitle').text(deviceName.toLowerCase());
+                }
+            }
+        });
+
+        // === КЛИК ПО МОДЕЛИ ===
+        $('.model-tag a').on('click', function(e) {
+            const href = $(this).attr('href');
+            if (href && href !== '#' && !$(this).data('toggle')) {
+                return true; // Переход по ссылке
+            }
+
+            e.preventDefault();
+
+            if ($(this).data('toggle') === 'modal') {
+                const target = $(this).data('target');
+                $(target).modal('show');
+            }
+        });
+
+        // === ОТПРАВКА ФОРМЫ - ПЕРЕХОД НА СТРАНИЦУ ДИАГНОСТИКИ ===
+        $('#diagnostic-search-form').on('submit', function(e) {
+            e.preventDefault();
+
+            const deviceType = $('#device-type').val();
+            const diagnosticSlug = $('#device-diagnostic').val();
+
+            if (!deviceType || !diagnosticSlug) {
+                alert('Пожалуйста, выберите устройство и неисправность');
+                return false;
+            }
+
+            // Получаем URL из выбранной опции
+            const selectedOption = $('#device-diagnostic option:selected');
+            const diagnosticUrl = selectedOption.data('url');
+
+            if (diagnosticUrl) {
+                // Переход на страницу диагностики
+                window.location.href = diagnosticUrl;
+            } else {
+                alert('Ошибка: URL диагностики не найден');
+            }
+
+            return false;
+        });
+
+        // Кнопка "Показать все модели"
+        $(document).on('click', '.show-all-models', function(e) {
+            e.preventDefault();
+            $('.model-tag').show();
+            $('#device-subtitle').text('все модели техники');
+        });
+    });
+</script>
