@@ -1794,6 +1794,7 @@ h2.about-item__title {
 
 .main .about {
     padding-top: 0;
+    padding-bottom: 0;
 }
 
 .about {
@@ -2219,11 +2220,18 @@ h1 span {
     max-width: 724px;
 }
 
+.services-hero__content h1 {
+    margin-bottom: 40px;
+}
+
 .card .hero-tags h2 .accent {
     color: #0ea5e9;
     display: inline-block;
 }
 
+.hero__diagnostic h1 {
+    margin-bottom: 40px;
+}
 
 .tags-show-more {
     display: flex;
