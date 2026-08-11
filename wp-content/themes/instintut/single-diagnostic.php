@@ -146,13 +146,13 @@ $solutions = get_field('solutions') ?: [];
     </div>
 <?php endif ?>
 
+<div class="white-wrapper m-100">
+    <?php get_template_part('parts/reviews') ?>
 
-<?php get_template_part('parts/front-page/reviews', null, ['css_class' => 'padd-0']); ?>
-
-<?php get_template_part('parts/team'); ?>
-<?php get_template_part('parts/steps'); ?>
-<?php get_template_part('parts/contacts'); ?>
-
+    <?php get_template_part('parts/team-block'); ?>
+    <?php get_template_part('parts/steps'); ?>
+    <?php get_template_part('parts/contacts'); ?>
+</div>
 
 <?php get_template_part('parts/cta'); ?>
 

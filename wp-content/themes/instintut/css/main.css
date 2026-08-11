@@ -167,7 +167,7 @@ html.admin-bar .main {
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    background: var(--siniy);
+    background: transparent;
 }
 
 header {
@@ -618,6 +618,10 @@ footer a {
     right: 0;
     z-index: 2;
 }
+
+/* .wp-singular.diagnostic-template-default section.team {
+    padding-top: 80px;
+} */
 
 .team .container {
     position: relative;
