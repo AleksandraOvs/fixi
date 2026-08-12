@@ -743,6 +743,10 @@
         left: 0;
     }
 
+    .features.p-100 {
+        padding-top: 50px;
+    }
+
     .questions {
         overflow-x: hidden;
     }
