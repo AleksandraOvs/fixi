@@ -728,11 +728,15 @@
     }
 
     .services-hero__in {
-        padding-top: 100px;
+        padding-top: 50px;
     }
 
     .card {
         padding: 40px 10px;
+    }
+
+    section {
+        padding-bottom: 40px;
     }
 
     .map-info {
