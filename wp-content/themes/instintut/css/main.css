@@ -1080,7 +1080,6 @@ h2.about-item__title {
     padding: 40px;
     display: flex;
     flex-direction: column;
-    gap: 70px;
 }
 
 .callback__in {
