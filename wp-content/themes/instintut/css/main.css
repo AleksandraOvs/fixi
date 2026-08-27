@@ -2546,6 +2546,10 @@ h1 span {
     background: var(--svetlo-goluboy);
 }
 
+.steps {
+    padding-bottom: 0;
+}
+
 /* --- КОНТЕЙНЕР ГРАФИКА --- */
 .icon-wrapper {
     width: 100px;
