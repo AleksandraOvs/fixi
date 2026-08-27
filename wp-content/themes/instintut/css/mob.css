@@ -499,6 +499,7 @@
         padding-bottom: 20px;
         flex-wrap: nowrap;
         white-space: nowrap;
+        overflow-x: scroll;
     }
 
     .feature-item__icon {
