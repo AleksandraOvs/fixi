@@ -35,73 +35,64 @@ if ($features && is_array($features)) :
                 </h2>
 
                 <?php
-                $first_row  = array_slice($features, 0, 3);
-                $second_row = array_slice($features, 3);
+                // $first_row  = array_slice($features, 0, 3);
+                // $second_row = array_slice($features, 3);
                 ?>
 
-                <!-- Первый ряд -->
-                <ul class="features__row row m-2">
-                    <?php foreach ($first_row as $feature) :
+                <ul class="features__row">
+                    <?php foreach ($features as $index => $feature) :
 
                         $title = $feature['title'] ?? '';
                         $text  = $feature['text'] ?? '';
                         $image = $feature['image']['url'] ?? '';
+
+                        $is_top    = ($index < 3);
+                        $is_bottom = ($index >= 3);
+                        $is_last   = ($index === count($features) - 1);
+
+                        $item_class = $is_top
+                            ? 'features__item features__item--top'
+                            : 'features__item features__item--bottom';
+
                     ?>
-                        <li class="col-3">
+
+                        <li class="<?= esc_attr($item_class); ?>">
+
                             <div class="feature-item">
-                                <div class="feature-item__icon">
+
+                                <div class="feature-item__icon <?= $is_last ? 'feature-item__icon-last' : ''; ?>">
+
                                     <?php if ($image): ?>
-                                        <img src="<?= esc_url($image); ?>" alt="<?= esc_attr($title); ?>" loading="lazy">
+                                        <img
+                                            src="<?= esc_url($image); ?>"
+                                            alt="<?= esc_attr($title); ?>"
+                                            loading="lazy">
                                     <?php endif; ?>
+
                                 </div>
 
                                 <div class="feature-item__content">
+
                                     <?php if ($title): ?>
                                         <div class="feature-item__title">
                                             <?= esc_html($title); ?>
                                         </div>
                                     <?php endif; ?>
 
-                                    <?php if ($text): ?> <div class="feature-item__sub"> <?= wp_kses($text, ['br' => []]); ?> </div> <?php endif; ?>
+                                    <?php if ($text): ?>
+                                        <div class="feature-item__sub">
+                                            <?= wp_kses($text, ['br' => []]); ?>
+                                        </div>
+                                    <?php endif; ?>
+
                                 </div>
+
                             </div>
+
                         </li>
+
                     <?php endforeach; ?>
                 </ul>
-
-                <?php if (!empty($second_row)) : ?>
-                    <!-- Остальные ряды -->
-                    <ul class="features__row row m-2">
-                        <?php foreach ($second_row as $index => $feature) :
-
-                            $title = $feature['title'] ?? '';
-                            $text  = $feature['text'] ?? '';
-                            $image = $feature['image']['url'] ?? '';
-
-                            $is_last = ($index === count($second_row) - 1);
-                        ?>
-                            <li class="col-3">
-                                <div class="feature-item">
-                                    <div class="feature-item__icon <?= $is_last ? 'feature-item__icon-last' : ''; ?>">
-                                        <?php if ($image): ?>
-                                            <img src="<?= esc_url($image); ?>" alt="<?= esc_attr($title); ?>" loading="lazy">
-                                        <?php endif; ?>
-                                    </div>
-
-                                    <div class="feature-item__content">
-                                        <?php if ($title): ?>
-                                            <div class="feature-item__title">
-                                                <?= esc_html($title); ?>
-                                            </div>
-                                        <?php endif; ?>
-
-                                        <?php if ($text): ?> <div class="feature-item__sub"> <?= wp_kses($text, ['br' => []]); ?> </div> <?php endif; ?>
-                                    </div>
-                                </div>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                <?php endif; ?>
 
             </div>
         </div>
