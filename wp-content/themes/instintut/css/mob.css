@@ -715,11 +715,7 @@
     }
 
     .services-hero__img-dec {
-        top: unset;
-        bottom: -50%;
-        right: unset;
-        left: -10%;
-        opacity: .3;
+        display: none;
     }
 
     .services-hero__in {
